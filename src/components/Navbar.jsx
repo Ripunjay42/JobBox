@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="bg-black text-white mt-1 text-center py-5 font-bold text-xl">
+      <div className="bg-black mt-1 text-center py-5 font-bold text-2xl text-white">
         JOBBOX.ORG.IN
       </div>
       <nav className="bg-red-900 relative mt-0">
