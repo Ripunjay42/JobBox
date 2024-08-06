@@ -33,13 +33,13 @@ export default function Login() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-8 text-indigo-600">JOBBOB.ORG.IN</h1>
-      <div className="w-full max-w-md p-8 bg-white border border-gray-300 rounded-lg shadow-[0_10px_50px_rgba(0,0,0,0.25)] transition-shadow duration-300 hover:shadow-[0_20px_70px_rgba(0,0,0,0.3)]">
-        <div className="mb-8 text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900">Admin Login</h2>
-          <p className="mt-2 text-sm text-gray-600">Only authorized personnel</p>
+      <h1 className="text-3xl font-bold mb-8 text-red-600">JOBBOB.ORG.IN</h1>
+      <div className="w-full max-w-sm p-6 bg-white border border-gray-300 rounded-lg shadow-[0_10px_50px_rgba(0,0,0,0.25)] transition-shadow duration-300 hover:shadow-[0_20px_70px_rgba(0,0,0,0.3)]">
+        <div className="mb-6 text-center">
+          <h2 className="text-xl font-extrabold text-gray-900">Admin Login</h2>
+          <p className="mt-1 text-sm text-gray-600">Only authorized personnel</p>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="username">
               Username
@@ -50,7 +50,7 @@ export default function Login() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
           <div>
@@ -63,13 +63,13 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             />
           </div>
-          {error && <p className="text-red-600 text-sm">{error}</p>}
+          {error && <p className="text-red-600 text-xs">{error}</p>}
           <button
             type="submit"
-            className="w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
+            className="w-full px-4 py-2 text-sm text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
           >
             Login
           </button>

@@ -6,14 +6,14 @@ import Link from 'next/link';
 const ImportantLinks = () => {
   // Example links - you'll replace this with data fetched from your database
   const links = [
-    { title: "Latest Government Jobs", href: "/govt-jobs" },
-    { title: "Private Sector Opportunities", href: "/private-jobs" },
-    { title: "Job Seeker Resources", href: "/resources" },
-    { title: "Career Development Tips", href: "/career-tips" },
-    { title: "Interview Preparation", href: "/interview-prep" },
-    { title: "Resume Writing Guide", href: "/resume-guide" },
-    { title: "Assam Job Market Insights", href: "/job-market" },
-    { title: "Employer Registration", href: "/employer-register" },
+    { title: "Latest Government Jobs", href: "/" },
+    { title: "Private Sector Opportunities", href: "/" },
+    { title: "Job Seeker Resources", href: "/" },
+    { title: "Career Development Tips", href: "/" },
+    { title: "Interview Preparation", href: "/" },
+    { title: "Resume Writing Guide", href: "/" },
+    { title: "Assam Job Market Insights", href: "/" },
+    { title: "Employer Registration", href: "/" },
   ];
 
   return (
