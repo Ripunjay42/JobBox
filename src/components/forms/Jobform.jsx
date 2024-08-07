@@ -2,6 +2,7 @@
 'use client';
 import { useState } from 'react';
 import axios from 'axios';
+import './JobForm.css'; // Import the CSS file
 
 const JobForm = () => {
   const initialJobState = {
@@ -45,7 +46,7 @@ const JobForm = () => {
           placeholder="Job Title"
           value={job.job_title}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full px-2 py-2 border border-gray-300 rounded-md placeholder-text-sm"
           required
         />
         <input
@@ -54,7 +55,7 @@ const JobForm = () => {
           placeholder="Organization"
           value={job.organization}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full px-2 py-2 border border-gray-300 rounded-md placeholder-text-sm"
           required
         />
         <textarea
@@ -62,7 +63,7 @@ const JobForm = () => {
           placeholder="Job Description"
           value={job.job_description}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          className="w-full px-2 py-2 border border-gray-300 rounded-md placeholder-text-sm"
           rows="30"
           required
         />

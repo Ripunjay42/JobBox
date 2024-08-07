@@ -1,6 +1,8 @@
 'use client';
 import { useState } from 'react';
 import axios from 'axios';
+import Link from 'next/link';
+import { AiFillHome } from 'react-icons/ai'; // Import the home icon
 import Dashboard from '@/components/Dashboard';
 
 export default function Login() {
@@ -32,8 +34,15 @@ export default function Login() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold mb-8 text-red-600">JOBBOB.ORG.IN</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 relative">
+      <div className="absolute top-20 left-1/2 transform -translate-x-1/2">
+        <Link href="/">
+          <button className="flex items-center justify-center w-12 h-12 rounded-full bg-red-600 text-white shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <AiFillHome className="w-6 h-6" aria-hidden="true" />
+          </button>
+        </Link>
+      </div>
+      <h1 className="text-2xl font-bold mb-8 text-red-600">JOBBOX.ORG.IN</h1>
       <div className="w-full max-w-sm p-6 bg-white border border-gray-300 rounded-lg shadow-[0_10px_50px_rgba(0,0,0,0.25)] transition-shadow duration-300 hover:shadow-[0_20px_70px_rgba(0,0,0,0.3)]">
         <div className="mb-6 text-center">
           <h2 className="text-xl font-extrabold text-gray-900">Admin Login</h2>

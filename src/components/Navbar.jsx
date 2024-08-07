@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
+import { FaUserShield } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,9 +22,9 @@ const Navbar = () => {
       </div>
       <nav className="bg-red-900 relative mt-0">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
-          <div className="flex items-center justify-center h-8 md:h-10">
-            <div className="hidden md:block">
-              <div className="flex items-baseline space-x-6">
+          <div className="flex items-center justify-between h-8 md:h-10">
+            <div className="flex-1 flex justify-center">
+              <div className="hidden md:flex space-x-6">
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
@@ -35,11 +36,16 @@ const Navbar = () => {
                 ))}
               </div>
             </div>
-            <div className="md:hidden">
+            <div className="flex items-center">
+              <Link href="/login">
+                <button className="bg-white text-red-900 px-3 py-1 rounded-full text-xs font-medium flex items-center">
+                  <FaUserShield className="mr-1" /> Admin
+                </button>
+              </Link>
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
-                className="inline-flex items-center justify-center p-1 rounded-md text-white hover:bg-red-600 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-white"
+                className="ml-2 md:hidden inline-flex items-center justify-center p-1 rounded-md text-white hover:bg-red-600 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-white"
                 aria-controls="mobile-menu"
                 aria-expanded="false"
               >
@@ -82,8 +88,8 @@ const Navbar = () => {
           </div>
         </div>
         {isOpen && (
-          <div 
-            className="md:hidden absolute top-full left-0 right-0 z-50 bg-red-900 shadow-lg" 
+          <div
+            className="md:hidden absolute top-full left-0 right-0 z-50 bg-red-900 shadow-lg"
             id="mobile-menu"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -97,6 +103,14 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
+              <Link href="/login">
+                <button
+                  className="w-full text-left bg-white text-red-900 px-3 py-1 rounded-full text-xs font-medium flex items-center"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <FaUserShield className="mr-1" /> Admin
+                </button>
+              </Link>
             </div>
           </div>
         )}

@@ -1,0 +1,3 @@
+.placeholder-text-sm::placeholder {
+    font-size: 0.875rem; /* Smaller font size for placeholder text */
+  }

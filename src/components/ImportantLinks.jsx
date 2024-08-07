@@ -19,11 +19,11 @@ const ImportantLinks = () => {
   return (
     <div className="border-2 border-black p-4">
       <div className="border border-gray-300 p-2 mb-2">
-        <h2 className="font-semibold text-blue-600">Important Links</h2>
+        <h2 className="font-semibold text-red-600 text-2xl">Important Links</h2>
       </div>
       {links.map((link, index) => (
         <div key={index} className="border border-gray-300 p-2 mb-2">
-          <Link href={link.href} className="text-blue-600 text-l hover:underline">
+          <Link href={link.href} className="text-blue-500 text-sm hover:underline">
             {link.title}
           </Link>
         </div>
