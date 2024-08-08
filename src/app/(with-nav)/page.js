@@ -26,14 +26,14 @@ const JobPage = () => {
     fetchJobs();
   }, []);
 
-  const toggleJobDescription = (jobId) => {
-    setExpandedJobs(prev => ({...prev, [jobId]: !prev[jobId]}));
-  };
+  // const toggleJobDescription = (jobId) => {
+  //   setExpandedJobs(prev => ({...prev, [jobId]: !prev[jobId]}));
+  // };
 
   const truncateDescription = (description, lines = 2) => {
     const descriptionLines = description.split('\n');
     if (descriptionLines.length > lines) {
-      return descriptionLines.slice(0, lines).join('\n') + '...';
+      return descriptionLines.slice(0, lines).join('') + '...';
     }
     return description;
   };
@@ -60,26 +60,26 @@ const JobPage = () => {
     return new Date(dateString).toLocaleDateString('en-US', options);
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Failed to load jobs</div>;
+  if (loading) return <div className='text-center'>Loading...</div>;
+  if (error) return <div className='text-center'>Failed to load jobs</div>;
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Job Listings</h1>
+      {/* <h1 className="text-2xl font-bold mb-4">Job Listings</h1> */}
       
       <div className="flex flex-col md:flex-row gap-3">
         <div className="md:w-2/3 border-2 border-black p-4 bg-white shadow-md">
           {jobs.map((job) => (
             <div key={job.id} className="mb-4">
               <Link href={`/job/${job.id}`}>
-                <h2 className="text-2xl text-red-700 font-bold mb-3 hover:underline cursor-pointer">
+                <h2 className="text-2xl text-red-700 font-medium mb-3 hover:underline cursor-pointer">
                   {job.job_title}
                 </h2>
               </Link>
-              <p className="text-gray-800 text-xs mb-1">{job.organization}</p>
-              <p className="text-gray-600 text-xs mb-3">Posted on: {formatDate(job.created_at)}</p>
+              <p className="text-gray-800 font-bold text-xs mb-1">{job.organization}</p>
+              <p className="text-gray-600 font-bold text-xs mb-3">Posted on: {formatDate(job.created_at)}</p>
               <div 
-                className="whitespace-pre-wrap break-words text-sm text-black mb-3"
+                className="whitespace-pre-wrap break-words text-sm space-y-4 text-black mb-3"
                 style={{fontFamily: 'inherit'}}
                 dangerouslySetInnerHTML={renderDescription(job.job_description, expandedJobs[job.id])}
               />
@@ -92,7 +92,7 @@ const JobPage = () => {
                     Read Less
                   </button>
                 ) : ()} */}
-                  <Link  className="text-sm text-red-500 hover:text-red-700 hover:underline" href={`/job/${job.id}`}>
+                  <Link  className="text-sm text-red-600 font-bold hover:text-red-700 hover:underline" href={`/job/${job.id}`}>
                       Read More...
                   </Link>
               </div>

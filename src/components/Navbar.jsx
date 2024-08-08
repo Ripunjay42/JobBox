@@ -10,8 +10,8 @@ const Navbar = () => {
     { name: 'ABOUT', href: '/about' },
     { name: 'GOV JOBS', href: '/' },
     { name: 'PRIVATE JOBS', href: '/' },
-    { name: 'LINKS', href: '/links' },
-    { name: 'BOOKS', href: '/' },
+    { name: 'IMP LINKS', href: '/links' },
+    { name: 'BOOKS', href: '/books' },
     { name: 'CONTACT US', href: '/contact' },
   ];
 
@@ -23,14 +23,64 @@ const Navbar = () => {
       <nav className="bg-red-900 relative mt-0">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
           <div className="flex items-center justify-between h-8 md:h-10">
+            <div className="flex items-center">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                type="button"
+                className="md:hidden flex items-center justify-center p-1 rounded-md text-white focus:outline-none"
+                aria-controls="mobile-menu"
+                aria-expanded={isOpen}
+              >
+                {!isOpen ? (
+                  <>
+                    <svg
+                      className="h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 6h16M4 12h16M4 18h16"
+                      />
+                    </svg>
+                    <span className="ml-2 text-xs">Main Menu</span>
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      className="h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                    <span className="ml-2 text-xs">Main Menu</span>
+                  </>
+                )}
+              </button>
+            </div>
             <div className="flex-1 flex justify-center">
               <div className="hidden md:flex space-x-6">
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-white hover:bg-black px-2 py-1 rounded-md text-xs font-medium"
+                    className="group relative text-white px-2 py-1 rounded-md text-xs font-medium"
                   >
+                    <span className="absolute inset-0 rounded-md border border-transparent group-hover:border-white transition-all duration-200"></span>
                     {item.name}
                   </Link>
                 ))}
@@ -38,58 +88,16 @@ const Navbar = () => {
             </div>
             <div className="flex items-center">
               <Link href="/login">
-                <button className="bg-white text-red-900 px-3 py-1 rounded-full text-xs font-medium flex items-center">
+                <button className="bg-white text-red-600 font-bold px-3 py-1 rounded-full text-xs flex items-center">
                   <FaUserShield className="mr-1" /> Admin
                 </button>
               </Link>
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                type="button"
-                className="ml-2 md:hidden inline-flex items-center justify-center p-1 rounded-md text-white hover:bg-red-600 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-white"
-                aria-controls="mobile-menu"
-                aria-expanded="false"
-              >
-                <span className="sr-only">Open main menu</span>
-                {!isOpen ? (
-                  <svg
-                    className="block h-5 w-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    className="block h-5 w-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                )}
-              </button>
             </div>
           </div>
         </div>
         {isOpen && (
           <div
-            className="md:hidden absolute top-full left-0 right-0 z-50 bg-red-900 shadow-lg"
+            className="md:hidden absolute top-full left-0 right-0 z-50 bg-black shadow-lg"
             id="mobile-menu"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -97,7 +105,7 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-white hover:bg-black block px-3 py-1 rounded-md text-xs font-medium"
+                  className="text-white block px-3 py-1 rounded-md text-xs font-medium border-b border-white w-full"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
@@ -105,7 +113,7 @@ const Navbar = () => {
               ))}
               <Link href="/login">
                 <button
-                  className="w-full text-left bg-white text-red-900 px-3 py-1 rounded-full text-xs font-medium flex items-center"
+                  className="text-left bg-white text-red-600 font-bold px-3 py-1 rounded-full text-xs flex items-center mt-2"
                   onClick={() => setIsOpen(false)}
                 >
                   <FaUserShield className="mr-1" /> Admin

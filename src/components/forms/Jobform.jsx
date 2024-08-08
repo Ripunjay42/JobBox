@@ -2,7 +2,7 @@
 'use client';
 import { useState } from 'react';
 import axios from 'axios';
-import './JobForm.css'; // Import the CSS file
+import './JobForm.css';
 
 const JobForm = () => {
   const initialJobState = {
@@ -13,6 +13,7 @@ const JobForm = () => {
 
   const [job, setJob] = useState(initialJobState);
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     setJob({ ...job, [e.target.name]: e.target.value });
@@ -21,6 +22,7 @@ const JobForm = () => {
   const handleAddMore = () => {
     setJob(initialJobState);
     setSuccessMessage('');
+    setErrorMessage('');
   };
 
   const handleSubmit = async (e) => {
@@ -30,10 +32,12 @@ const JobForm = () => {
       
       if (response.status === 200) {
         setSuccessMessage('Job added successfully!');
+        setErrorMessage('');
       }
     } catch (error) {
       console.error('Error adding job:', error);
-      setSuccessMessage('Error adding job. Please try again.');
+      setSuccessMessage('');
+      setErrorMessage('Error adding job. Please try again.');
     }
   };
 
@@ -72,14 +76,14 @@ const JobForm = () => {
       <div className="flex space-x-4">
         <button
           type="submit"
-          className="px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700"
+          className="px-3 py-1 text-sm text-white bg-red-600 rounded-md hover:bg-red-700"
         >
           Submit Job
         </button>
         <button
           type="button"
           onClick={handleAddMore}
-          className="px-4 py-2 text-black border border-indigo-600 rounded-md hover:bg-indigo-50"
+          className="px-3 py-1 text-sm text-black border border-indigo-600 rounded-md hover:bg-indigo-50"
         >
           Add More
         </button>
@@ -88,6 +92,12 @@ const JobForm = () => {
       {successMessage && (
         <div className="mt-4 p-2 text-sm bg-green-100 text-green-700 rounded-md">
           {successMessage}
+        </div>
+      )}
+      
+      {errorMessage && (
+        <div className="mt-4 p-2 text-sm bg-red-100 text-red-700 rounded-md">
+          {errorMessage}
         </div>
       )}
     </form>

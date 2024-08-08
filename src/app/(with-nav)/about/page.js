@@ -12,7 +12,7 @@ const AboutPage = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">About</h1>
+      {/* <h1 className="text-2xl font-bold mb-4">About</h1> */}
       
       <div className="flex flex-col md:flex-row gap-3">
         <div className="md:w-2/3 border-2 border-black p-4">
