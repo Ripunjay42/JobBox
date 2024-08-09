@@ -1,11 +1,11 @@
-// pages/job.js
+// pages/government_job.js
 'use client';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import ImportantLinks from '@/components/ImportantLinks';
 
-const JobPage = () => {
+const GovJobPage = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,7 +15,7 @@ const JobPage = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/jobs');
+        const response = await axios.get('http://localhost:5000/api/gov');
         setJobs(response.data);
         setLoading(false);
       } catch (err) {
@@ -69,9 +69,11 @@ const JobPage = () => {
     <div className="max-w-4xl mx-auto p-4">
       <div className="flex flex-col md:flex-row gap-3">
         <div className="md:w-2/3 border-2 border-black p-4 bg-white shadow-md">
-          <h2 className="text-2xl font-bold mb-6 text-center text-white bg-gradient-to-r from-blue-500 to-purple-600 py-2 px-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
-            Job Listings
-          </h2>
+          <h2 className="text-2xl font-bold mb-6 text-center text-white bg-gradient-to-r from-green-600 to-blue-500 py-2 px-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
+            <span className="mr-2">🏛️</span>
+            Gov. Jobs
+            <span className="ml-2">📋</span>
+          </h2>          
           {currentJobs.map((job) => (
             <div key={job.id} className="mb-4">
               <Link href={`/job/${job.id}`}>
@@ -126,4 +128,4 @@ const JobPage = () => {
   );
 };
 
-export default JobPage;
+export default GovJobPage;

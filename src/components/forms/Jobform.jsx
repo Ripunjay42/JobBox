@@ -8,7 +8,8 @@ const JobForm = () => {
   const initialJobState = {
     job_title: '',
     organization: '',
-    job_description: ''
+    job_description: '',
+    category: ''
   };
 
   const [job, setJob] = useState(initialJobState);
@@ -62,6 +63,17 @@ const JobForm = () => {
           className="w-full px-2 py-2 border border-gray-300 rounded-md placeholder-text-sm"
           required
         />
+        <select
+          name="category"
+          value={job.category}
+          onChange={handleChange}
+          className="w-full px-2 py-2 border border-gray-300 rounded-md text-sm"
+          required
+        >
+          <option value="">Select Job Category</option>
+          <option value="private">Private Job</option>
+          <option value="government">Government Job</option>
+        </select>
         <textarea
           name="job_description"
           placeholder="Job Description"

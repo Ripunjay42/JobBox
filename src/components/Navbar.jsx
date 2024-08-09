@@ -8,8 +8,8 @@ const Navbar = () => {
   const navItems = [
     { name: 'HOME', href: '/' },
     { name: 'ABOUT', href: '/about' },
-    { name: 'GOV JOBS', href: '/' },
-    { name: 'PRIVATE JOBS', href: '/' },
+    { name: 'GOV JOBS', href: '/government_job' },
+    { name: 'PRIVATE JOBS', href: '/private_job'},
     { name: 'IMP LINKS', href: '/links' },
     { name: 'BOOKS', href: '/books' },
     { name: 'CONTACT US', href: '/contact' },
