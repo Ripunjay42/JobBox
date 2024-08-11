@@ -35,7 +35,7 @@ const Navbar = () => {
       <div className="bg-black dark:bg-black mt-1 text-center py-5 font-bold text-2xl text-white">
         JOBBOX.ORG.IN
       </div>
-      <nav className="bg-red-900 dark:bg-gray-800 relative mt-0">
+      <nav className="bg-red-900 dark:bg-gray-900 relative mt-0">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
           <div className="flex items-center justify-between h-8 md:h-10">
             <div className="flex items-center">

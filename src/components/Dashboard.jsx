@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { FaBriefcase, FaLink, FaBook, FaUser, FaSun, FaMoon } from 'react-icons/fa';
+import { FaBriefcase, FaLink, FaBook, FaUser, FaSun, FaMoon, FaTrash } from 'react-icons/fa';
 import JobForm from './forms/JobForm';
 import LinkForm from './forms/LinkForm';
 import BookForm from './forms/BookForm';
+import DeleteJob from './delete/DeleteJob';
+import DeleteLinks from './delete/DeleteLinks';
+import DeleteBooks from './delete/DeleteBooks';
 
 const Card = ({ title, icon, onClick, darkMode }) => (
   <div
@@ -12,7 +15,7 @@ const Card = ({ title, icon, onClick, darkMode }) => (
     }`}
   >
     <div className="flex items-center space-x-4">
-      <div className={`text-4xl ${darkMode ? 'text-red-400' : 'text-red-600'}`}>
+      <div className={`text-3xl ${darkMode ? 'text-red-400' : 'text-red-600'}`}>
         {icon}
       </div>
       <div className="text-sm font-bold">{title}</div>
@@ -76,28 +79,34 @@ const Dashboard = ({ user, onLogout }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card title="Add Job" icon={<FaBriefcase />} onClick={() => setActiveForm('job')} darkMode={darkMode} />
-          <Card title="Add Links" icon={<FaLink />} onClick={() => setActiveForm('links')} darkMode={darkMode} />
-          <Card title="Add Books" icon={<FaBook />} onClick={() => setActiveForm('books')} darkMode={darkMode} />
+          <Card title="Add Job" icon={<FaBriefcase />} onClick={() => setActiveForm('add Job')} darkMode={darkMode} />
+          <Card title="Add Links" icon={<FaLink />} onClick={() => setActiveForm('add Links')} darkMode={darkMode} />
+          <Card title="Add Books" icon={<FaBook />} onClick={() => setActiveForm('add Books')} darkMode={darkMode} />
+          <Card title="Delete Job" icon={<FaTrash />} onClick={() => setActiveForm('delete Job')} darkMode={darkMode} />
+          <Card title="Delete Links" icon={<FaTrash />} onClick={() => setActiveForm('delete Links')} darkMode={darkMode} />
+          <Card title="Delete Books" icon={<FaTrash />} onClick={() => setActiveForm('delete Books')} darkMode={darkMode} />
         </div>
 
         {activeForm && (
           <div
-            className={`w-full md:w-3/3 p-4 rounded-xl shadow-lg hover:shadow-xl ${
+            className={`max-w-4xl p-4 rounded-xl shadow-lg hover:shadow-xl ${
               darkMode ? 'bg-gray-900' : 'bg-white border-2 border-gray-500'
             }`}
           >
             <h3 className="text-lg font-bold mb-4">
-              {`Add ${activeForm.charAt(0).toUpperCase() + activeForm.slice(1)}`}
+              {`${activeForm.charAt(0).toUpperCase() + activeForm.slice(1)}`}
             </h3>
             <div
               className={`p-4 rounded-lg ${
                 darkMode ? 'bg-gray-900' : 'bg-white'
               }`}
             >
-              {activeForm === 'job' && <JobForm darkMode={darkMode}/>}
-              {activeForm === 'links' && <LinkForm darkMode={darkMode} />}
-              {activeForm === 'books' && <BookForm darkMode={darkMode}/>}
+              {activeForm === 'add Job' && <JobForm darkMode={darkMode}/>}
+              {activeForm === 'add Links' && <LinkForm darkMode={darkMode} />}
+              {activeForm === 'add Books' && <BookForm darkMode={darkMode}/>}
+              {activeForm === 'delete Job' && <DeleteJob darkMode={darkMode} />}
+              {activeForm === 'delete Links' && <DeleteLinks darkMode={darkMode} />}
+              {activeForm === 'delete Books' && <DeleteBooks darkMode={darkMode} />}
             </div>
           </div>
         )}
