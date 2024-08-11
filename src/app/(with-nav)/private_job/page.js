@@ -67,10 +67,10 @@ const PrivateJobPage = () => {
   if (error) return <div className='text-center text-white'>Failed to load jobs</div>;
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black dark:text-white">
+    <div className="bg-white dark:bg-black dark:text-white">
       <div className="max-w-4xl mx-auto p-4">
         <div className="flex flex-col md:flex-row gap-3">
-          <div className="md:w-2/3 border-2 border-black dark:border-gray-600 p-4 bg-white dark:bg-gray-800 shadow-md dark:shadow-lg">
+          <div className="md:w-2/3 border-2 border-black dark:border-gray-600 p-4 bg-white dark:bg-gray-900 shadow-md dark:shadow-lg">
             <h2 className="text-xl font-bold mb-4 text-center bg-gradient-to-r from-green-600 to-blue-500 text-white py-2 px-4 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
               <span className="mr-2">🚀</span>
               Private Jobs

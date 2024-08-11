@@ -6,12 +6,12 @@ import RecentJobs from '@/components/RecentJobs';
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-white dark:bg-black dark:text-white"> {/* Ensure full page background */}
+    <div className=" bg-white dark:bg-black dark:text-white"> {/* Ensure full page background */}
       <div className="max-w-4xl mx-auto p-4  dark:text-white">
         {/* <h1 className="text-2xl font-bold mb-4">About</h1> */}
         
         <div className="flex flex-col md:flex-row gap-3">
-          <div className="md:w-2/3 border-2 border-black dark:border-gray-600 p-4 dark:bg-gray-800">
+          <div className="md:w-2/3 border-2 border-black dark:border-gray-600 p-4 dark:bg-gray-900">
             <p className="mb-4">
               <span className="text-blue-600 dark:text-blue-400 font-semibold">JobBox.org.in</span> is a popular job portal in Assam, India. The website provides information on various job vacancies in government, private, and other sectors across Assam.
             </p>

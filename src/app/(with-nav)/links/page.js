@@ -22,9 +22,9 @@ const LinksPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black dark:text-white">
+    <div className="bg-white dark:bg-black dark:text-white">
       <div className="max-w-3xl mx-auto p-4">
-        <div className="border-2 border-black dark:border-gray-600 p-4 bg-white dark:bg-gray-800 shadow-md dark:shadow-lg rounded-sm">
+        <div className="border-2 border-black dark:border-gray-600 p-4 bg-white dark:bg-gray-900 shadow-md dark:shadow-lg rounded-sm">
           <h1 className="text-xl font-bold text-center text-white mb-4 bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-700 dark:to-purple-800 py-2 px-2 shadow-lg">
             Important Links
           </h1>

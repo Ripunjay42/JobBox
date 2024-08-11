@@ -49,7 +49,7 @@ const RecentJobs = () => {
   );
 
   return (
-    <div className="border-2 border-black dark:border-gray-600 p-4 mt-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900">
+    <div className="border-2 border-black dark:border-gray-600 p-4 mt-4 rounded-lg shadow-md transition-all duration-300 hover:shadow-xl bg-gradient-to-br from-white to-gray-100 dark:from-gray-900 dark:to-gray-900">
       <div className="border border-gray-300 dark:border-gray-600 p-2 mb-4 rounded-md bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-500 dark:to-purple-600 transition-all duration-300 hover:from-purple-600 hover:to-indigo-500">
         <h2 className="font-bold text-white text-lg text-center animate-pulse">Recent Jobs</h2>
       </div>

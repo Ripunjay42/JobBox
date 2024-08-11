@@ -58,7 +58,7 @@ export default function Login() {
         </Link>
       </div>
       <h1 className="text-2xl font-bold mb-8 text-red-600 dark:text-red-400">JOBBOX.ORG.IN</h1>
-      <div className="w-full max-w-sm p-6 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-[0_10px_50px_rgba(0,0,0,0.25)] transition-shadow duration-300 hover:shadow-[0_20px_70px_rgba(0,0,0,0.3)] dark:shadow-[0_10px_50px_rgba(255,255,255,0.1)]">
+      <div className="w-full max-w-sm p-6 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg shadow-[0_10px_50px_rgba(0,0,0,0.25)] transition-shadow duration-300 hover:shadow-[0_20px_70px_rgba(0,0,0,0.3)] dark:shadow-[0_10px_50px_rgba(255,255,255,0.1)]">
         <div className="mb-6 text-center">
           <h2 className="text-xl font-extrabold text-gray-900 dark:text-gray-100">Admin Login</h2>
           <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">Only authorized personnel</p>

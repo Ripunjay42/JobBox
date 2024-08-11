@@ -21,7 +21,7 @@ const ImportantLinks = () => {
   }, []);
 
   return (
-    <div className="border-2 border-black dark:border-gray-600 p-4 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
+    <div className="border-2 border-black dark:border-gray-600 p-4 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-900">
       <div className="border border-gray-300 dark:border-gray-600 p-2 mb-4 rounded-md bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-500 dark:to-purple-600 transition-all duration-300 hover:from-purple-600 hover:to-indigo-500">
         <h2 className="font-bold text-white text-lg text-center animate-pulse">Important Links</h2>
       </div>

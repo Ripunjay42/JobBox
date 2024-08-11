@@ -40,7 +40,7 @@ const BookForm = ({ darkMode }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={`space-y-6 p-6 rounded-lg shadow-md ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-black'}`}>
+    <form onSubmit={handleSubmit} className={`space-y-6 p-6 rounded-lg shadow-md ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-white text-black'}`}>
       <div className="space-y-4">
         <input
           type="text"

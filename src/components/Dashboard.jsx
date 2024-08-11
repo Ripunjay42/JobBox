@@ -8,7 +8,7 @@ const Card = ({ title, icon, onClick, darkMode }) => (
   <div
     onClick={onClick}
     className={`p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105 ${
-      darkMode ? 'bg-gray-800 text-gray-100 shadow-md' : 'bg-white text-black'
+      darkMode ? 'bg-gray-900 text-gray-100 shadow-md' : 'bg-white text-black border-2 border-gray-500 shadow-md'
     }`}
   >
     <div className="flex items-center space-x-4">
@@ -29,15 +29,15 @@ const Dashboard = ({ user, onLogout }) => {
   };
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-black text-gray-100' : 'bg-gray-100 text-black'}`}>
+    <div className={`min-h-screen ${darkMode ? 'bg-black text-gray-100' : 'bg-white text-black'}`}>
       <div
         className={`p-6 max-w-4xl mx-auto rounded-xl shadow-lg space-y-6 ${
-          darkMode ? 'bg-black' : 'bg-gray-100'
+          darkMode ? 'bg-black' : 'bg-white'
         }`}
       >
         <div
           className={`flex justify-between items-center p-4 rounded-lg shadow-md hover:shadow-lg ${
-            darkMode ? 'bg-gray-800' : 'bg-white'
+            darkMode ? 'bg-gray-900' : 'bg-white border-2 border-gray-500'
           }`}
         >
           <div className="flex items-center space-x-4">
@@ -84,15 +84,15 @@ const Dashboard = ({ user, onLogout }) => {
         {activeForm && (
           <div
             className={`w-full md:w-3/3 p-4 rounded-xl shadow-lg hover:shadow-xl ${
-              darkMode ? 'bg-gray-800' : 'bg-white'
+              darkMode ? 'bg-gray-900' : 'bg-white border-2 border-gray-500'
             }`}
           >
             <h3 className="text-lg font-bold mb-4">
               {`Add ${activeForm.charAt(0).toUpperCase() + activeForm.slice(1)}`}
             </h3>
             <div
-              className={`bg-gray-50 p-4 rounded-lg ${
-                darkMode ? 'bg-gray-800' : 'bg-gray-50'
+              className={`p-4 rounded-lg ${
+                darkMode ? 'bg-gray-900' : 'bg-white'
               }`}
             >
               {activeForm === 'job' && <JobForm darkMode={darkMode}/>}

@@ -42,7 +42,7 @@ const JobForm = ({ darkMode }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={`space-y-6 ${darkMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-black'} p-6 rounded-lg shadow-md`}>
+    <form onSubmit={handleSubmit} className={`space-y-6 ${darkMode ? 'bg-gray-900 text-gray-100' : 'bg-white text-black'} p-6 rounded-lg shadow-md`}>
       <div className="space-y-4">
         <input
           type="text"
