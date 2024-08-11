@@ -2,6 +2,7 @@
 'use client';
 import React from 'react';
 import ImportantLinks from '@/components/ImportantLinks';
+import RecentJobs from '@/components/RecentJobs';
 
 const AboutPage = () => {
   // In the future, you might fetch data here
@@ -30,8 +31,9 @@ const AboutPage = () => {
           </p>
         </div>
         
-        <div className="md:w-1/3">
+        <div className="md:w-1/3 flex flex-col gap-1">
           <ImportantLinks />
+          <RecentJobs />
         </div>
       </div>
     </div>

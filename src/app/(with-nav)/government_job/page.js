@@ -4,13 +4,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import ImportantLinks from '@/components/ImportantLinks';
+import RecentJobs from '@/components/RecentJobs';
+
 
 const GovJobPage = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const jobsPerPage = 5;
+  const jobsPerPage = 7;
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -69,7 +71,7 @@ const GovJobPage = () => {
     <div className="max-w-4xl mx-auto p-4">
       <div className="flex flex-col md:flex-row gap-3">
         <div className="md:w-2/3 border-2 border-black p-4 bg-white shadow-md">
-          <h2 className="text-2xl font-bold mb-6 text-center text-white bg-gradient-to-r from-green-600 to-blue-500 py-2 px-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
+          <h2 className="text-xl font-bold mb-4 text-center text-white bg-gradient-to-r from-green-600 to-blue-500 py-2 px-4  shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
             <span className="mr-2">🏛️</span>
             Gov. Jobs
             <span className="ml-2">📋</span>
@@ -106,22 +108,23 @@ const GovJobPage = () => {
             <button 
               onClick={() => paginate(currentPage - 1)} 
               disabled={currentPage === 1}
-              className={`px-3 py-1 text-md rounded underline ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}
+              className={`px-3 py-1 text-sm font-bold rounded underline ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}
             >
               previous
             </button>
             <button 
               onClick={() => paginate(currentPage + 1)} 
               disabled={indexOfLastJob >= jobs.length}
-              className={`px-3 py-1 text-md rounded underline ${indexOfLastJob >= jobs.length ? 'bg-gray-300 cursor-not-allowed' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}
+              className={`px-3 py-1 text-sm font-bold rounded underline ${indexOfLastJob >= jobs.length ? 'bg-gray-300 cursor-not-allowed' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}
             >
               next
             </button>
           </div>
         </div>
         
-        <div className="md:w-1/3">
+        <div className="md:w-1/3 flex flex-col gap-1">
           <ImportantLinks />
+          <RecentJobs />
         </div>
       </div>
     </div>
