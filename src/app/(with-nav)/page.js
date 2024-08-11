@@ -67,7 +67,8 @@ const JobPage = () => {
   if (error) return <div className='text-center'>Failed to load jobs</div>;
 
   return (
-    <div className="max-w-4xl mx-auto p-4 dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-black dark:text-white"> {/* Ensure full page background */}
+    <div className="max-w-4xl mx-auto p-4">
       <div className="flex flex-col md:flex-row gap-3">
         <div className="md:w-2/3 border-2 border-black dark:border-gray-700 p-4 bg-white dark:bg-gray-800 shadow-lg">
           <h2 className="text-xl font-bold mb-4 text-center text-white bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-700 dark:to-purple-800 py-2 px-4 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
@@ -94,7 +95,7 @@ const JobPage = () => {
                     {job.category}...
                   </Link>
                 </div>
-                <Link href={`/job/${job.id}`} className="text-sm text-red-600 dark:text-red-400 font-bold hover:text-red-700 dark:hover:text-red-300 hover:underline">
+                <Link href={`/job/${job.id}`} className="text-sm text-red-600 dark:text-red-500 font-bold hover:text-red-700 dark:hover:text-red-400 hover:underline">
                   Read More...
                 </Link>
               </div>
@@ -124,6 +125,7 @@ const JobPage = () => {
           <RecentJobs />
         </div>
       </div>
+    </div>
     </div>
   );
 };

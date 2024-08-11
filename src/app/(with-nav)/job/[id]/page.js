@@ -1,4 +1,3 @@
-// app/job/[id]/page.js
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -38,26 +37,33 @@ const JobDetail = ({ params }) => {
     return { __html: formattedContent };
   };
 
-  if (loading) return <div className='text-center'>Loading...</div>;
-  if (error) return <div className='text-center'>Failed to load job details</div>;
+  if (loading) return <div className='text-center text-black dark:text-white'>Loading...</div>;
+  if (error) return <div className='text-center text-black dark:text-white'>Failed to load job details</div>;
   if (!job) return null;
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
-      {/* <h1 className="text-2xl font-bold mb-4">Job Listings</h1> */}
-        <div className="border-2 border-black p-4 bg-white shadow-md">
-          <h1 className="text-2xl text-red-700 font-bold mb-3">{job.job_title}</h1>
-          <p className="text-gray-800 font-bold text-xs mb-1">{job.organization}</p>
-          <p className="text-gray-600 font-bold text-xs mb-3">Posted on: {formatDate(job.created_at)}</p>
+    <div className="min-h-screen bg-white dark:bg-black dark:text-white">
+      <div className="max-w-3xl mx-auto p-4">
+        <div className="border-2 border-black dark:border-gray-600 p-4 bg-white dark:bg-gray-800 shadow-md dark:shadow-lg rounded-sm">
+          <h1 className="text-2xl text-red-700 dark:text-red-400 font-bold mb-3">
+            {job.job_title}
+          </h1>
+          <p className="text-gray-800 dark:text-gray-300 font-bold text-xs mb-1">
+            {job.organization}
+          </p>
+          <p className="text-gray-600 dark:text-gray-400 font-bold text-xs mb-3">
+            Posted on: {formatDate(job.created_at)}
+          </p>
           <div 
-            className="whitespace-pre-wrap break-words text-sm text-black mb-3"
+            className="whitespace-pre-wrap break-words text-sm dark:text-gray-200 mb-3"
             style={{ fontFamily: 'inherit' }}
             dangerouslySetInnerHTML={renderDescription(job.job_description)}
           />
-          <Link href="/" className="text-sm text-red-600 font-bold hover:text-red-700 hover:underline">
+          <Link href="/" className="text-sm text-red-600 dark:text-red-500 font-bold hover:text-red-700 dark:hover:text-red-400 hover:underline">
             Back to Job Listings...
           </Link>
         </div>
+      </div>
     </div>
   );
 };

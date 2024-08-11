@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FaBookOpen, FaBookReader, FaBook } from 'react-icons/fa';
 import Image from 'next/image';
 
-const LinksPage = () => {
+const Books = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -30,44 +30,47 @@ const LinksPage = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
-      <div className="border-2 border-black p-4 bg-white shadow-md">
-        <h1 className="text-xl text-center text-black underline font-bold mb-4">
-          BOOKS
-        </h1>
-        <div className="flex justify-center mb-8">
-          <Image
-            src="/book.jpg" // Test with this placeholder
-            alt="Book Library"
-            width={600}
-            height={400}
-          />
-        </div>
-        <div className="space-y-3">
-          {books.map((book) => {
-            const Icon = getRandomIcon();
-            return (
-              <div
-                key={book.id}
-                className="flex justify-between items-center"
-              >
-                <div className="flex items-center space-x-3">
-                  <Icon className="text-blue-500" />
-                  <h2 className="text-sm text-red-700 font-bold">{book.title}</h2>
-                </div>
-                <button
-                  onClick={() => handleClick(book.link)}
-                  className="px-2 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 text-xs underline min-w-[80px]"
+    <div className="min-h-screen bg-white dark:bg-black dark:text-white">
+      <div className="max-w-3xl mx-auto p-4">
+        <div className="border-2 border-black dark:border-gray-600 p-4 bg-white dark:bg-gray-800 shadow-md dark:shadow-lg rounded-sm">
+          <h1 className="text-xl font-bold text-center text-white mb-4 bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-700 dark:to-purple-800 py-2 px-2 shadow-lg">
+            Books
+          </h1>
+          <div className="flex justify-center mb-8">
+            <Image
+              src="/book.jpg" // Placeholder image
+              alt="Book Library"
+              width={600}
+              height={400}
+              className="rounded-lg shadow-md"
+            />
+          </div>
+          <div className="space-y-3">
+            {books.map((book) => {
+              const Icon = getRandomIcon();
+              return (
+                <div
+                  key={book.id}
+                  className="flex justify-between items-center border-b dark:border-gray-600 border-gray-300 pb-2 mb-2"
                 >
-                  Read More
-                </button>
-              </div>
-            );
-          })}
+                  <div className="flex items-center space-x-3">
+                    <Icon className="text-blue-500 dark:text-blue-400" />
+                    <h2 className="text-sm text-red-700 dark:text-red-400 font-bold">{book.title}</h2>
+                  </div>
+                  <button
+                    onClick={() => handleClick(book.link)}
+                    className="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 text-xs underline min-w-[80px] dark:bg-red-500 dark:hover:bg-red-600 text-animation"
+                  >
+                    Read More
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default LinksPage;
+export default Books;

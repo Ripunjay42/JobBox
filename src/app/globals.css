@@ -70,3 +70,27 @@ body {
   animation: fadeIn 0.5s ease-out forwards;
   opacity: 0;
 }
+
+
+/* LinksPage.css */
+@keyframes textGlow {
+  0% {
+    color: white;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    color: #3bd376;
+    text-shadow: 0 0 10px rgba(211, 228, 58, 0.8);
+  }
+  100% {
+    color: white;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  }
+}
+
+.text-animation {
+  animation: textGlow .8s infinite;
+}
+
+
+

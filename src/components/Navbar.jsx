@@ -1,26 +1,41 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
-import { FaUserShield } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { FaUserShield, FaMoon, FaSun } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
   const navItems = [
     { name: 'HOME', href: '/' },
     { name: 'ABOUT', href: '/about' },
     { name: 'GOV JOBS', href: '/government_job' },
-    { name: 'PRIVATE JOBS', href: '/private_job'},
+    { name: 'PRIVATE JOBS', href: '/private_job' },
     { name: 'IMP LINKS', href: '/links' },
     { name: 'BOOKS', href: '/books' },
     { name: 'CONTACT US', href: '/contact' },
   ];
 
+  useEffect(() => {
+    const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(storedDarkMode);
+    document.documentElement.classList.toggle('dark', storedDarkMode);
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem('darkMode', newDarkMode);
+    document.documentElement.classList.toggle('dark', newDarkMode);
+  };
+
   return (
     <div>
-      <div className="bg-black mt-1 text-center py-5 font-bold text-2xl text-white">
+      <div className="bg-black dark:bg-black mt-1 text-center py-5 font-bold text-2xl text-white">
         JOBBOX.ORG.IN
       </div>
-      <nav className="bg-red-900 relative mt-0">
+      <nav className="bg-red-900 dark:bg-gray-800 relative mt-0">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
           <div className="flex items-center justify-between h-8 md:h-10">
             <div className="flex items-center">
@@ -78,7 +93,7 @@ const Navbar = () => {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="group relative text-white px-2 py-1 rounded-md text-xs font-medium"
+                    className="group relative text-white dark:text-gray-300 px-2 py-1 rounded-md text-xs font-medium"
                   >
                     <span className="absolute inset-0 rounded-md border border-transparent group-hover:border-white transition-all duration-200"></span>
                     {item.name}
@@ -86,9 +101,13 @@ const Navbar = () => {
                 ))}
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={toggleDarkMode}>
+                {darkMode ? <FaSun className="mr-1 text-xl" style={{ color: 'red' }} /> : <FaMoon className="mr-1 text-xl" style={{ color: 'black' }} />}
+              </button>
               <Link href="/login">
-                <button className="bg-white text-red-600 font-bold px-3 py-1 rounded-full text-xs flex items-center">
+                <button className="bg-white dark:bg-gray-700 text-red-600 dark:text-yellow-400 font-bold px-3 py-1 rounded-full text-xs flex items-center">
                   <FaUserShield className="mr-1" /> Admin
                 </button>
               </Link>
@@ -97,7 +116,7 @@ const Navbar = () => {
         </div>
         {isOpen && (
           <div
-            className="md:hidden absolute top-full left-0 right-0 z-50 bg-black shadow-lg"
+            className="md:hidden absolute top-full left-0 right-0 z-50 bg-black dark:bg-gray-900 shadow-lg"
             id="mobile-menu"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -105,15 +124,19 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-white block px-3 py-1 rounded-md text-xs font-medium border-b border-white w-full"
+                  className="text-white dark:text-gray-300 block px-3 py-1 rounded-md text-xs font-medium border-b border-white dark:border-gray-700 w-full"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
+              {/* <button
+                onClick={toggleDarkMode}>
+                {darkMode ? <FaSun className="mr-1 text-xl" style={{ color: 'red' }} /> : <FaMoon className="mr-1 text-xl" style={{ color: 'black' }} />}
+              </button> */}
               <Link href="/login">
                 <button
-                  className="text-left bg-white text-red-600 font-bold px-3 py-1 rounded-full text-xs flex items-center mt-2"
+                  className="text-left bg-white dark:bg-gray-700 text-red-600 dark:text-yellow-400 font-bold px-3 py-1 rounded-full text-xs flex items-center mt-2"
                   onClick={() => setIsOpen(false)}
                 >
                   <FaUserShield className="mr-1" /> Admin
