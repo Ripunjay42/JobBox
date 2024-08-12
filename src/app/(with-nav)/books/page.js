@@ -10,7 +10,7 @@ const Books = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get('https://job-server-ruby.vercel.app:5000/api/books');
+        const response = await axios.get('https://jobbox-server-roan.vercel.app/api/books');
         setBooks(response.data);
       } catch (error) {
         console.error('Error fetching books:', error);

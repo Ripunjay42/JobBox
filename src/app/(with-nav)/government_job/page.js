@@ -16,7 +16,7 @@ const GovJobPage = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get('https://job-server-ruby.vercel.app:5000/api/gov');
+        const response = await axios.get('https://jobbox-server-roan.vercel.app/api/gov');
         setJobs(response.data);
         setLoading(false);
       } catch (err) {

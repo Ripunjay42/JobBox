@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 
-const ImportantLinks = () => {
+const ImportantLinks = React.memo(() => {
   const [links, setLinks] = useState([]);
 
   useEffect(() => {
     const fetchLinks = async () => {
       try {
-        const response = await axios.get('https://job-server-ruby.vercel.app:5000/api/links');
+        const response = await axios.get('https://jobbox-server-roan.vercel.app/api/links');
         const lastTenLinks = response.data.slice(0, 5);
         setLinks(lastTenLinks);
       } catch (error) {
@@ -42,6 +42,6 @@ const ImportantLinks = () => {
       ))}
     </div>
   );
-};
+});
 
 export default ImportantLinks;

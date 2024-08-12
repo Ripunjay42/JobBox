@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -46,7 +47,7 @@ const DeleteBooks = ({ darkMode }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get('https://job-server-ruby.vercel.app:5000/api/books');
+      const response = await axios.get('https://jobbox-server-roan.vercel.app/api/books');
       setBooks(response.data);
     } catch (err) {
       setError(err.response?.data?.message || err.message);
@@ -62,7 +63,7 @@ const DeleteBooks = ({ darkMode }) => {
         throw new Error('Invalid book ID');
       }
 
-      const response = await axios.delete(`https://job-server-ruby.vercel.app:5000/api/books/${id}`);
+      const response = await axios.delete(`https://jobbox-server-roan.vercel.app/api/books/${id}`);
       if (response.status === 200) {
         setBooks(prevBooks => prevBooks.filter(book => book.id !== id));
         setMessage('Book deleted successfully');

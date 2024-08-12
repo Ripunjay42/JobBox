@@ -8,7 +8,7 @@ const LinksPage = () => {
   useEffect(() => {
     const fetchLinks = async () => {
       try {
-        const response = await axios.get('https://job-server-ruby.vercel.app:5000/api/links');
+        const response = await axios.get('https://jobbox-server-roan.vercel.app/api/links');
         setLinks(response.data);
       } catch (error) {
         console.error('Error fetching links:', error);

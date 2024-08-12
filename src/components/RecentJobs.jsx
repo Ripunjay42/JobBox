@@ -3,15 +3,15 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 
-const RecentJobs = () => {
+const RecentJobs = React.memo(() => {
   const [govJobs, setGovJobs] = useState([]);
   const [privateJobs, setPrivateJobs] = useState([]);
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const govResponse = await axios.get('https://job-server-ruby.vercel.app:5000/api/gov');
-        const privateResponse = await axios.get('https://job-server-ruby.vercel.app:5000/api/private');
+        const govResponse = await axios.get('https://jobbox-server-roan.vercel.app/api/gov');
+        const privateResponse = await axios.get('https://jobbox-server-roan.vercel.app/api/private');
         
         setGovJobs(govResponse.data.slice(0, 3));
         setPrivateJobs(privateResponse.data.slice(0, 3));
@@ -57,6 +57,6 @@ const RecentJobs = () => {
       {renderJobs(privateJobs, "Private Jobs")}
     </div>
   );
-};
+});
 
 export default RecentJobs;

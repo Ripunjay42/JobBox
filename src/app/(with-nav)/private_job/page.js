@@ -16,7 +16,7 @@ const PrivateJobPage = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get('https://job-server-ruby.vercel.app:5000/api/private');
+        const response = await axios.get('https://jobbox-server-roan.vercel.app/api/private');
         setJobs(response.data);
         setLoading(false);
       } catch (err) {

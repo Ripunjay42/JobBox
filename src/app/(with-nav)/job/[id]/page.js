@@ -11,7 +11,7 @@ const JobDetail = ({ params }) => {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const response = await axios.get(`https://job-server-ruby.vercel.app:5000/api/jobs/${params.id}`);
+        const response = await axios.get(`https://jobbox-server-roan.vercel.app/api/jobs/${params.id}`);
         setJob(response.data);
         setLoading(false);
       } catch (err) {
