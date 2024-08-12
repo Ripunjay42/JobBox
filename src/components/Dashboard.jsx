@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { FaBriefcase, FaLink, FaBook, FaUser, FaSun, FaMoon, FaTrash } from 'react-icons/fa';
 import JobForm from './src/components/forms/JobForm';
-import LinkForm from './forms/LinkForm';
-import BookForm from './forms/BookForm';
-import DeleteJob from './delete/DeleteJob';
-import DeleteLinks from './delete/DeleteLinks';
-import DeleteBooks from './delete/DeleteBooks';
+import LinkForm from './src/components/forms/LinkForm';
+import BookForm from './src/components/forms/BookForm';
+import DeleteJob from './src/components/delete/DeleteJob';
+import DeleteLinks from './src/components/delete/DeleteLinks';
+import DeleteBooks from './src/components/delete/DeleteBooks';
 
 const Card = ({ title, icon, onClick, darkMode }) => (
   <div
