@@ -10,8 +10,8 @@ const RecentJobs = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const govResponse = await axios.get('http://localhost:5000/api/gov');
-        const privateResponse = await axios.get('http://localhost:5000/api/private');
+        const govResponse = await axios.get('https://job-server-ruby.vercel.app:5000/api/gov');
+        const privateResponse = await axios.get('https://job-server-ruby.vercel.app:5000/api/private');
         
         setGovJobs(govResponse.data.slice(0, 3));
         setPrivateJobs(privateResponse.data.slice(0, 3));

@@ -9,7 +9,7 @@ const ImportantLinks = () => {
   useEffect(() => {
     const fetchLinks = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/links');
+        const response = await axios.get('https://job-server-ruby.vercel.app:5000/api/links');
         const lastTenLinks = response.data.slice(0, 5);
         setLinks(lastTenLinks);
       } catch (error) {

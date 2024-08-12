@@ -46,7 +46,7 @@ const DeleteLinks = ({ darkMode }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:5000/api/links');
+      const response = await axios.get('https://job-server-ruby.vercel.app:5000/api/links');
       setLinks(response.data);
     } catch (err) {
       setError(err.response?.data?.message || err.message);
@@ -62,7 +62,7 @@ const DeleteLinks = ({ darkMode }) => {
         throw new Error('Invalid link ID');
       }
 
-      const response = await axios.delete(`http://localhost:5000/api/links/${id}`);
+      const response = await axios.delete(`https://job-server-ruby.vercel.app:5000/api/links/${id}`);
       if (response.status === 200) {
         setLinks(prevLinks => prevLinks.filter(link => link.id !== id));
         setMessage('Link deleted successfully');

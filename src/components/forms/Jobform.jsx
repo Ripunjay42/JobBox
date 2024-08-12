@@ -28,7 +28,7 @@ const JobForm = ({ darkMode }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/jobs', job);
+      const response = await axios.post('https://job-server-ruby.vercel.app:5000/api/jobs', job);
       
       if (response.status === 200) {
         setSuccessMessage('Job added successfully!');

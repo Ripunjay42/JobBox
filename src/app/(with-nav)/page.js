@@ -16,7 +16,7 @@ const JobPage = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/jobs');
+        const response = await axios.get('https://job-server-ruby.vercel.app:5000/api/jobs');
         setJobs(response.data);
         setLoading(false);
       } catch (err) {

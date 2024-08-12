@@ -54,7 +54,7 @@ const DeleteJob = ({ darkMode }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:5000/api/jobs');
+      const response = await axios.get('https://job-server-ruby.vercel.app:5000/api/jobs');
       setJobs(response.data);
     } catch (err) {
       setError(err.response?.data?.message || err.message);
@@ -70,7 +70,7 @@ const DeleteJob = ({ darkMode }) => {
         throw new Error('Invalid job ID');
       }
 
-      const response = await axios.delete(`http://localhost:5000/api/jobs/${id}`);
+      const response = await axios.delete(`https://job-server-ruby.vercel.app:5000/api/jobs/${id}`);
       if (response.status === 200) {
         setJobs(prevJobs => prevJobs.filter(job => job.id !== id));
         setMessage('Job deleted successfully');
