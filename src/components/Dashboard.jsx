@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaBriefcase, FaLink, FaBook, FaUser, FaSun, FaMoon, FaTrash } from 'react-icons/fa';
-import JobForm from './forms/JobForm';
+import JobForm from './src/components/forms/JobForm';
 import LinkForm from './forms/LinkForm';
 import BookForm from './forms/BookForm';
 import DeleteJob from './delete/DeleteJob';
