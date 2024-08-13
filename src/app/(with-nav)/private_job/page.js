@@ -1,32 +1,23 @@
-// pages/private_job.js
 'use client';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
+import { JobContext } from '@/components/Jobcontext';
 import Link from 'next/link';
 import ImportantLinks from '@/components/ImportantLinks';
 import RecentJobs from '@/components/RecentJobs';
 
 const PrivateJobPage = () => {
-  const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const jobsPerPage = 7;
+  const {
+    privateJobs,
+    currentPrivatePage,
+    setCurrentPrivatePage,
+    jobsPerPage,
+    loading
+  } = useContext(JobContext);
 
-  useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const response = await axios.get('https://jobbox-server-roan.vercel.app/api/private');
-        setJobs(response.data);
-        setLoading(false);
-      } catch (err) {
-        setError(err);
-        setLoading(false);
-      }
-    };
-
-    fetchJobs();
-  }, []);
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    return new Date(dateString).toLocaleDateString('en-US', options);
+  };
 
   const truncateDescription = (description, lines = 2) => {
     const descriptionLines = description.split('\n');
@@ -38,33 +29,23 @@ const PrivateJobPage = () => {
 
   const renderDescription = (description) => {
     const content = truncateDescription(description);
-    
     const urlRegex = /(https?:\/\/[^\s]+)/g;
-    
     const htmlContent = content.replace(urlRegex, (url) => {
       return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">${url}</a>`;
     });
-
     const formattedContent = htmlContent.replace(/\n/g, '<br>');
-    
     return { __html: formattedContent };
   };
 
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-    return new Date(dateString).toLocaleDateString('en-US', options);
+  const paginate = (pageNumber) => {
+    setCurrentPrivatePage(pageNumber);
   };
 
-  // Get current jobs
-  const indexOfLastJob = currentPage * jobsPerPage;
-  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
-  const currentJobs = jobs.slice(indexOfFirstJob, indexOfLastJob);
+  const prevButtonDisabled = currentPrivatePage === 1 || loading;
+  const nextButtonDisabled = !privateJobs.jobs || privateJobs.jobs.length < jobsPerPage || loading || currentPrivatePage * jobsPerPage >= privateJobs.totalJobs;
 
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  if (loading) return <div className='text-center text-white'>Loading...</div>;
-  if (error) return <div className='text-center text-white'>Failed to load jobs</div>;
+  if (loading) return <div className='text-center dark:text-white'>Loading...</div>;
+  if (!privateJobs.jobs || privateJobs.jobs.length === 0) return <div className='text-center dark:text-white'>No private jobs available</div>;
 
   return (
     <div className="bg-white dark:bg-black dark:text-white">
@@ -76,7 +57,7 @@ const PrivateJobPage = () => {
               Private Jobs
               <span className="ml-2">💼</span>
             </h2>
-            {currentJobs.map((job) => (
+            {privateJobs.jobs.map((job) => (
               <div key={job.id} className="mb-4">
                 <Link href={`/job/${job.id}`}>
                   <h2 className="text-2xl text-red-700 font-medium mb-3 hover:underline cursor-pointer dark:text-red-400">
@@ -93,8 +74,8 @@ const PrivateJobPage = () => {
                 <div className="flex justify-between items-center mt-3">
                   <div>
                     <span className="text-sm text-green-900 font-bold mr-2 dark:text-green-400">Category:</span>
-                    <Link href={job.category === 'government' ? '/government_job' : '/private_job'} className="text-sm text-blue-800 px-1 py-1 rounded-full hover:underline dark:text-blue-400">
-                      {job.category}...
+                    <Link href={`/private_job`} className="text-sm text-blue-800 px-1 py-1 rounded-full hover:underline dark:text-blue-400">
+                      Private
                     </Link>
                   </div>
                   <Link href={`/job/${job.id}`} className="text-sm text-red-600 font-bold hover:text-red-700 hover:underline dark:text-red-500">
@@ -106,22 +87,21 @@ const PrivateJobPage = () => {
             ))}
             <div className="flex justify-between mt-4">
               <button 
-                onClick={() => paginate(currentPage - 1)} 
-                disabled={currentPage === 1}
-                className={`px-3 py-1 text-sm font-bold rounded underline ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed dark:bg-gray-700 dark:text-white' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}
+                onClick={() => !prevButtonDisabled && paginate(currentPrivatePage - 1)} 
+                disabled={prevButtonDisabled}
+                className={`px-3 py-1 text-sm font-bold rounded underline ${prevButtonDisabled ? 'bg-gray-300 cursor-not-allowed dark:bg-gray-700 dark:text-white' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}
               >
-                previous
+                {prevButtonDisabled ? 'No prev' : 'Prev page'}
               </button>
               <button 
-                onClick={() => paginate(currentPage + 1)} 
-                disabled={indexOfLastJob >= jobs.length}
-                className={`px-3 py-1 text-sm font-bold rounded underline ${indexOfLastJob >= jobs.length ? 'bg-gray-300 cursor-not-allowed dark:bg-gray-700 dark:text-white' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}
+                onClick={() => !nextButtonDisabled && paginate(currentPrivatePage + 1)} 
+                disabled={nextButtonDisabled}
+                className={`px-3 py-1 text-sm font-bold rounded underline ${nextButtonDisabled ? 'bg-gray-300 cursor-not-allowed dark:bg-gray-700 dark:text-white' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}
               >
-                next
+                {nextButtonDisabled ? 'No more' : 'Next page'}
               </button>
             </div>
           </div>
-          
           <div className="md:w-1/3 flex flex-col gap-1">
             <ImportantLinks />
             <RecentJobs />

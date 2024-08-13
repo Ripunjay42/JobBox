@@ -1,23 +1,11 @@
 'use client';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useContext } from 'react';
 import { FaBookOpen, FaBookReader, FaBook } from 'react-icons/fa';
 import Image from 'next/image';
+import { JobContext } from '@/components/Jobcontext';
 
 const Books = () => {
-  const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await axios.get('https://jobbox-server-roan.vercel.app/api/books');
-        setBooks(response.data);
-      } catch (error) {
-        console.error('Error fetching books:', error);
-      }
-    };
-    fetchBooks();
-  }, []);
+  const { books, currentBooksPage, setCurrentBooksPage, booksPerPage, loading } = useContext(JobContext);
 
   const getRandomIcon = () => {
     const icons = [FaBookOpen, FaBookReader, FaBook];
@@ -29,6 +17,16 @@ const Books = () => {
     window.open(link, '_blank');
   };
 
+  const paginate = (pageNumber) => {
+    setCurrentBooksPage(pageNumber);
+  };
+
+  const prevButtonDisabled = currentBooksPage === 1 || loading;
+  const nextButtonDisabled = !books.books || books.books.length < booksPerPage || loading ||  currentBooksPage * booksPerPage >= books.total;
+
+  if (loading) return <div className='text-center dark:text-white'>Loading...</div>;
+  if (!books.books || books.books.length === 0) return <div className='text-center dark:text-white'>No books available</div>;
+
   return (
     <div className="bg-white dark:bg-black dark:text-white">
       <div className="max-w-3xl mx-auto p-4">
@@ -38,7 +36,7 @@ const Books = () => {
           </h1>
           <div className="flex justify-center mb-8">
             <Image
-              src="/book.jpg" // Placeholder image
+              src="/book.jpg"
               alt="Book Library"
               width={600}
               height={400}
@@ -46,7 +44,7 @@ const Books = () => {
             />
           </div>
           <div className="space-y-3">
-            {books.map((book) => {
+            {books.books.map((book) => {
               const Icon = getRandomIcon();
               return (
                 <div
@@ -66,6 +64,22 @@ const Books = () => {
                 </div>
               );
             })}
+          </div>
+          <div className="flex justify-between mt-4">
+            <button 
+              onClick={() => paginate(currentBooksPage - 1)} 
+              disabled={prevButtonDisabled}
+              className={`px-3 py-1 text-sm font-bold rounded underline ${prevButtonDisabled ? 'bg-gray-300 cursor-not-allowed dark:bg-gray-700 dark:text-white' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}
+            >
+              {prevButtonDisabled ? 'No prev' : 'Prev page'}
+            </button>
+            <button 
+              onClick={() => paginate(currentBooksPage + 1)} 
+              disabled={nextButtonDisabled}
+              className={`px-3 py-1 text-sm font-bold rounded underline ${nextButtonDisabled ? 'bg-gray-300 cursor-not-allowed dark:bg-gray-700 dark:text-white' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}
+            >
+              {nextButtonDisabled ? 'No more' : 'Next page'}
+            </button>
           </div>
         </div>
       </div>

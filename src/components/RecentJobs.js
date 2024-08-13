@@ -1,27 +1,14 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
-import axios from 'axios';
+import { JobContext } from './Jobcontext';
 
-const RecentJobs = React.memo(() => {
-  const [govJobs, setGovJobs] = useState([]);
-  const [privateJobs, setPrivateJobs] = useState([]);
+const RecentJobs = () => {
+  const { govJobs, privateJobs } = useContext(JobContext);
 
-  useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const govResponse = await axios.get('https://jobbox-server-roan.vercel.app/api/gov');
-        const privateResponse = await axios.get('https://jobbox-server-roan.vercel.app/api/private');
-        
-        setGovJobs(govResponse.data.slice(0, 3));
-        setPrivateJobs(privateResponse.data.slice(0, 3));
-      } catch (error) {
-        console.error('Error fetching jobs:', error);
-      }
-    };
-
-    fetchJobs();
-  }, []);
+  // Take only the first 3 jobs from each category
+  const displayedGovJobs = (govJobs.jobs).slice(0, 3);
+  const displayedPrivateJobs = (privateJobs.jobs).slice(0, 3);
 
   const renderJobs = (jobs, title) => (
     <div className="mb-4 animate-slideIn">
@@ -53,10 +40,10 @@ const RecentJobs = React.memo(() => {
       <div className="border border-gray-300 dark:border-gray-600 p-2 mb-4 rounded-md bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-500 dark:to-purple-600 transition-all duration-300 hover:from-purple-600 hover:to-indigo-500">
         <h2 className="font-bold text-white text-lg text-center animate-pulse">Recent Jobs</h2>
       </div>
-      {renderJobs(govJobs, "Government Jobs")}
-      {renderJobs(privateJobs, "Private Jobs")}
+      {renderJobs(displayedGovJobs, "Government Jobs")}
+      {renderJobs(displayedPrivateJobs, "Private Jobs")}
     </div>
   );
-});
+};
 
 export default RecentJobs;

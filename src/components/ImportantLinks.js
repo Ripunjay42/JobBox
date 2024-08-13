@@ -1,31 +1,20 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
-import axios from 'axios';
+import { JobContext } from './Jobcontext';
 
-const ImportantLinks = React.memo(() => {
-  const [links, setLinks] = useState([]);
+const ImportantLinks = () => {
+  const { links } = useContext(JobContext);
 
-  useEffect(() => {
-    const fetchLinks = async () => {
-      try {
-        const response = await axios.get('https://jobbox-server-roan.vercel.app/api/links');
-        const lastTenLinks = response.data.slice(0, 5);
-        setLinks(lastTenLinks);
-      } catch (error) {
-        console.error('Error fetching links:', error);
-      }
-    };
-
-    fetchLinks();
-  }, []);
+  // Take only the first 5 links
+  const displayedLinks = (links.links).slice(0, 5);
 
   return (
     <div className="border-2 border-black dark:border-gray-600 p-4 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-900">
       <div className="border border-gray-300 dark:border-gray-600 p-2 mb-4 rounded-md bg-gradient-to-r from-indigo-500 to-purple-600 dark:from-indigo-500 dark:to-purple-600 transition-all duration-300 hover:from-purple-600 hover:to-indigo-500">
         <h2 className="font-bold text-white text-lg text-center animate-pulse">Important Links</h2>
       </div>
-      {links.map((link, index) => (
+      {displayedLinks.map((link, index) => (
         <div 
           key={link.id} 
           className="border bg-gray-200 dark:bg-gray-900 border-gray-300 dark:border-gray-600 p-2 mb-2 rounded-md transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-600 hover:shadow-md transform hover:-translate-y-0.5"
@@ -42,6 +31,6 @@ const ImportantLinks = React.memo(() => {
       ))}
     </div>
   );
-});
+};
 
 export default ImportantLinks;
