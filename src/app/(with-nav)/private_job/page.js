@@ -4,6 +4,7 @@ import { JobContext } from '@/components/Jobcontext';
 import Link from 'next/link';
 import ImportantLinks from '@/components/ImportantLinks';
 import RecentJobs from '@/components/RecentJobs';
+import Loadingspin from '@/components/Loadingspin';
 
 const PrivateJobPage = () => {
   const {
@@ -44,7 +45,8 @@ const PrivateJobPage = () => {
   const prevButtonDisabled = currentPrivatePage === 1 || loading;
   const nextButtonDisabled = !privateJobs.jobs || privateJobs.jobs.length < jobsPerPage || loading || currentPrivatePage * jobsPerPage >= privateJobs.totalJobs;
 
-  if (loading) return <div className='text-center dark:text-white'>Loading...</div>;
+  if (loading) return <Loadingspin/>
+  // <div className='text-center dark:text-white'>Loading...</div>;
   if (!privateJobs.jobs || privateJobs.jobs.length === 0) return <div className='text-center dark:text-white'>No private jobs available</div>;
 
   return (

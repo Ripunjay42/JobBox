@@ -1,6 +1,7 @@
 'use client';
 import React, { useContext } from 'react';
 import { JobContext } from '@/components/Jobcontext';
+import Loadingspin from '@/components/Loadingspin';
 
 const LinksPage = () => {
   const {
@@ -24,7 +25,8 @@ const LinksPage = () => {
   const prevButtonDisabled = currentLinksPage === 1 || loading;
   const nextButtonDisabled = !links.links || links.links.length < linksPerPage || loading || currentLinksPage * linksPerPage >= links.total;
 
-  if (loading) return <div className='text-center dark:text-white'>Loading...</div>;
+  if (loading) return <Loadingspin/>;
+  // <div className='text-center dark:text-white'>Loading...</div>;
   if (!links.links || links.links.length === 0) return <div className='text-center dark:text-white'>No links available</div>;
   
   return (

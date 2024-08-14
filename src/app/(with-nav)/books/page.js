@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { FaBookOpen, FaBookReader, FaBook } from 'react-icons/fa';
 import Image from 'next/image';
 import { JobContext } from '@/components/Jobcontext';
+import Loadingspin from '@/components/Loadingspin';
 
 const Books = () => {
   const { books, currentBooksPage, setCurrentBooksPage, booksPerPage, loading } = useContext(JobContext);
@@ -24,7 +25,8 @@ const Books = () => {
   const prevButtonDisabled = currentBooksPage === 1 || loading;
   const nextButtonDisabled = !books.books || books.books.length < booksPerPage || loading ||  currentBooksPage * booksPerPage >= books.total;
 
-  if (loading) return <div className='text-center dark:text-white'>Loading...</div>;
+  if (loading) return <Loadingspin/>
+  // <div className='text-center dark:text-white'>Loading...</div>;
   if (!books.books || books.books.length === 0) return <div className='text-center dark:text-white'>No books available</div>;
 
   return (

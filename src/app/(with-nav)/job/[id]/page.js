@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
+import Loadingspin from '@/components/Loadingspin';
 
 const JobDetail = ({ params }) => {
   const [job, setJob] = useState(null);
@@ -37,7 +38,8 @@ const JobDetail = ({ params }) => {
     return { __html: formattedContent };
   };
 
-  if (loading) return <div className='text-center text-black dark:text-white'>Loading...</div>;
+  if (loading) return <Loadingspin/>;
+  // <div className='text-center text-black dark:text-white'>Loading...</div>;
   if (error) return <div className='text-center text-black dark:text-white'>Failed to load job details</div>;
   if (!job) return null;
 

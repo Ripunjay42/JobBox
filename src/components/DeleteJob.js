@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import axios from 'axios';
+import Loadingspin from '@/components/Loadingspin';
 
 const DeleteJobList = ({ jobs, onDelete, darkMode }) => {
   const formatDate = (dateString) => {
@@ -98,7 +99,8 @@ const DeleteJob = ({ darkMode }) => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  if (isLoading) return <p>Loading jobs...</p>;
+  if (isLoading) return <Loadingspin/>;
+  // <p>Loading jobs...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (

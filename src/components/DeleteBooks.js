@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Loadingspin from '@/components/Loadingspin';
 
 const DeleteBooksList = ({ books, onDelete, darkMode }) => {
   return (
@@ -94,7 +95,8 @@ const DeleteBooks = ({ darkMode }) => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  if (isLoading) return <p>Loading books...</p>;
+  if (isLoading) return <Loadingspin/>;
+  // <p>Loading books...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (

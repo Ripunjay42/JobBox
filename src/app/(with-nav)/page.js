@@ -4,6 +4,7 @@ import { JobContext } from '@/components/Jobcontext';
 import Link from 'next/link';
 import ImportantLinks from '@/components/ImportantLinks';
 import RecentJobs from '@/components/RecentJobs';
+import Loadingspin from '@/components/Loadingspin'
 
 const JobPage = () => {
   const {
@@ -13,6 +14,9 @@ const JobPage = () => {
     jobsPerPage,
     loading
   } = useContext(JobContext);
+
+
+
 
   const truncateDescription = (description, lines = 2) => {
     const descriptionLines = description.split('\n');
@@ -46,7 +50,8 @@ const JobPage = () => {
   const isFirstPage = currentJobPage === 1;
   const isLastPage = jobs.jobs.length < jobsPerPage || currentJobPage * jobsPerPage >= jobs.totalJobs;
 
-  if (loading) return <div className='text-center dark:text-white'>Loading...</div>;
+  if (loading) return <Loadingspin/>
+  // <div className='text-center dark:text-white'>Loading...</div>;
   if (!jobs.jobs || jobs.jobs.length === 0) return <div className='text-center dark:text-white'>No jobs available</div>;
 
   return (

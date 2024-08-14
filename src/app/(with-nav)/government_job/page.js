@@ -4,6 +4,7 @@ import { JobContext } from '@/components/Jobcontext';
 import Link from 'next/link';
 import ImportantLinks from '@/components/ImportantLinks';
 import RecentJobs from '@/components/RecentJobs';
+import Loadingspin from '@/components/Loadingspin';
 
 const GovJobPage = () => {
   const {
@@ -46,7 +47,8 @@ const GovJobPage = () => {
   // const nextButtonDisabled = loading || (currentGovPage * jobsPerPage > govJobs.jobs.totalJobs);
   const nextButtonDisabled = !govJobs.jobs || govJobs.jobs.length < jobsPerPage || loading || currentGovPage * jobsPerPage >= govJobs.totalJobs;
 
-  if (loading) return <div className='text-center dark:text-white'>Loading...</div>;
+  if (loading) return <Loadingspin/>
+  // <div className='text-center dark:text-white'>Loading...</div>;
   if (!govJobs.jobs || govJobs.jobs.length === 0)
   {
     paginate(currentGovPage - 1)

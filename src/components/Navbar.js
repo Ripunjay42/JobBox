@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FaUserShield, FaMoon, FaSun } from 'react-icons/fa';
+import Loadingscr from "@/components/Loading";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +18,7 @@ const Navbar = () => {
     { name: 'CONTACT US', href: '/contact' },
   ];
 
+
   useEffect(() => {
     const storedDarkMode = localStorage.getItem('darkMode') === 'true';
     setDarkMode(storedDarkMode);
@@ -30,7 +32,22 @@ const Navbar = () => {
     document.documentElement.classList.toggle('dark', newDarkMode);
   };
 
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
+    <>
+    {loading ? (
+      <Loadingscr />
+    ) : (
     <div>
       <div className="bg-black dark:bg-black mt-1 text-center py-5 font-bold text-2xl text-white">
         JOBBOX.ORG.IN
@@ -147,6 +164,8 @@ const Navbar = () => {
         )}
       </nav>
     </div>
+  )}
+  </>
   );
 };
 
