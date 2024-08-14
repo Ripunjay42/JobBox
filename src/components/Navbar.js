@@ -141,7 +141,7 @@ const Navbar = () => {
               </div>
             </div>
             <div
-            className={`md:hidden fixed top-45 left-0 w-64 h-full bg-black dark:bg-gray-900 shadow-lg transform ${
+            className={`md:hidden fixed top-45 left-0 w-64 h-full bg-gray-900 dark:bg-black shadow-lg transform ${
               isOpen ? 'translate-x-0' : '-translate-x-full'
             } transition-transform duration-300 ease-in-out z-50`}
             id="mobile-menu"
