@@ -7,7 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer className="bg-white dark:bg-black mt-auto animate-fadeIn">
-      <div className="max-w-4xl mx-auto bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-300 border-2 border-gray-600 dark:border-gray-700">
+      <div className="max-w-4xl mx-auto bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300 border-2 border-gray-600 dark:border-gray-700">
         <div className="max-w-4xl mx-auto py-8 px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="animate-slideUp">
@@ -44,7 +44,7 @@ const Footer = () => {
           <div className="mt-6 pt-4 border-t-2 border-gray-400 dark:border-gray-700 text-sm text-center">
             <p>&copy; 2024 JobBox.org.in. All rights reserved.</p>
             <p className="mt-2 flex items-center justify-center">
-              Developed by <a href="#" className="font-medium hover:underline ml-1">Ripunjay Choudhury</a>
+              Developed by <a href="https://www.linkedin.com/in/ripunjay-choudhury-83864524b/" className="font-medium hover:underline ml-1">Ripunjay Choudhury</a>
               <a href="https://www.linkedin.com/in/ripunjay-choudhury-83864524b/" target='_blank' className="text-blue-600 hover:text-blue-700 text-xl ml-2 transform transition-transform duration-300 hover:scale-110">
                 <FaLinkedin />
               </a>

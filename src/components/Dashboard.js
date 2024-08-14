@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaBriefcase, FaLink, FaBook, FaUser, FaSun, FaMoon, FaTrash } from 'react-icons/fa';
 import JobForm from '@/components/Jobform';
 import LinkForm from './Linkform';
@@ -30,6 +30,13 @@ const Dashboard = ({ user, onLogout }) => {
   const toggleDarkMode = () => {
     setDarkMode(prevMode => !prevMode);
   };
+
+  useEffect(() => {
+    const storedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(storedDarkMode);
+    document.documentElement.classList.toggle('dark', storedDarkMode);
+  }, []);
+
 
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-black text-gray-100' : 'bg-white text-black'}`}>
