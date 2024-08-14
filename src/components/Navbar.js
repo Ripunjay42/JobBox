@@ -45,7 +45,7 @@ const Navbar = () => {
       const timer = setTimeout(() => {
         setLoading(false);
         sessionStorage.setItem('sessionLoaded', 'true');
-      }, 2000);
+      }, 1500);
 
       return () => clearTimeout(timer);
     } else {
