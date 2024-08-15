@@ -20,8 +20,8 @@ const Navbar = () => {
     { name: 'Home', href: '/', icon: FaHome },
     { name: 'About', href: '/about', icon: FaInfoCircle },
     { name: 'Gov.Jobs', href: '/government', icon: FaBriefcase },
-    { name: 'Private Jobs', href: '/private', icon: FaBuilding },
-    { name: 'Imp Links', href: '/links', icon: FaLink },
+    { name: 'Pvt.Jobs', href: '/private', icon: FaBuilding },
+    { name: 'Links', href: '/links', icon: FaLink },
     { name: 'Books', href: '/books', icon: FaBook },
     { name: 'Contact', href: '/contact', icon: FaEnvelope },
     {
