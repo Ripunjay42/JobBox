@@ -21,15 +21,15 @@ const Navbar = () => {
     { name: 'Imp Links', href: '/links', icon: FaLink },
     { name: 'Books', href: '/books', icon: FaBook },
     { name: 'Contact', href: '/contact', icon: FaEnvelope },
-    {
-      name: 'Others',
-      icon: FaEllipsisH,
-      dropdown: [
-        { name: 'Employer', href: '/employer', icon: FaUser },
-        { name: 'Internship', href: '/internship', icon: FaGraduationCap },
-        { name: 'Courses', href: '/courses', icon: FaLaptop },
-      ],
-    },
+    // {
+    //   name: 'Others',
+    //   icon: FaEllipsisH,
+    //   dropdown: [
+    //     { name: 'Employer', href: '/employer', icon: FaUser },
+    //     { name: 'Internship', href: '/internship', icon: FaGraduationCap },
+    //     { name: 'Courses', href: '/courses', icon: FaLaptop },
+    //   ],
+    // },
   ];
 
   useEffect(() => {
