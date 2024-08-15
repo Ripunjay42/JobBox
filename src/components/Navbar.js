@@ -100,7 +100,7 @@ const Navbar = () => {
                   </button>
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <div className="hidden md:flex space-x-3">
+                  <div className="hidden md:flex space-x-2">
                     {navItems.map((item) => (
                       item.dropdown ? (
                         <div key={item.name} className="relative group">
