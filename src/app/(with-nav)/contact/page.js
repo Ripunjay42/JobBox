@@ -49,8 +49,19 @@ const ContactUsPage = () => {
   return (
     <div className="bg-gray-100 dark:bg-black flex items-center justify-center p-4">
       <div className="border-2 border-gray-700 dark:border-gray-600 max-w-lg w-full p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
-        <h1 className="text-xl font-extrabold text-center text-gray-800 dark:text-gray-100 mb-6">
-          Contact Us
+      <h1 className="text-xl font-bold text-center text-white mb-4 bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-700 dark:to-purple-800 py-2 px-2 shadow-lg flex items-center justify-center">
+          {/* Left SVG Icon (Phone Icon) */}
+          <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h1.5a2 2 0 012 2v3.5a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm13.5 0a2 2 0 012-2h1.5a2 2 0 012 2v3.5a2 2 0 01-2 2H18a2 2 0 01-2-2V5zM9.172 16.828a4 4 0 010 5.656l-.172.172a2 2 0 01-2.828 0L3.879 19.88a2 2 0 010-2.828l.172-.172a4 4 0 015.656 0zm5.656-5.656a4 4 0 010 5.656l-.172.172a2 2 0 01-2.828 0L9.879 14.88a2 2 0 010-2.828l.172-.172a4 4 0 015.656 0z" />
+          </svg>
+
+          {/* Title */}
+          Contact us
+
+          {/* Right SVG Icon (Envelope Icon) */}
+          <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12h.01M12 16h.01M8 12h.01M3 8l7.89 5.26c.12.08.26.12.39.12s.27-.04.39-.12L21 8m-18 0V6a2 2 0 012-2h14a2 2 0 012 2v2M3 8v10a2 2 0 002 2h14a2 2 0 002-2V8" />
+          </svg>
         </h1>
         <div className="space-y-4">
           {contactDetails.map((contact) => (

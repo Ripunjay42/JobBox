@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
-import { FaBriefcase, FaLink, FaBook, FaUser, FaSun, FaMoon, FaTrash } from 'react-icons/fa';
+import { useState, useEffect, useRef } from 'react';
+import { FaBriefcase, FaLink, FaBook, FaUser, FaSun, FaMoon, FaTrash, FaGraduationCap } from 'react-icons/fa';
 import JobForm from '@/components/Jobform';
 import LinkForm from './Linkform';
 import BookForm from './Bookform';
+import CourseForm from './Courseform';
 import DeleteJob from './DeleteJob';
 import DeleteLinks from './DeleteLinks';
 import DeleteBooks from './DeleteBooks';
+import DeleteCourses from './DeleteCourses';
 
 const Card = ({ title, icon, onClick, darkMode }) => (
   <div
@@ -26,9 +28,19 @@ const Card = ({ title, icon, onClick, darkMode }) => (
 const Dashboard = ({ user, onLogout }) => {
   const [activeForm, setActiveForm] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
+  const activeFormRef = useRef(null);
 
   const toggleDarkMode = () => {
     setDarkMode(prevMode => !prevMode);
+  };
+
+  const handleCardClick = (formName) => {
+    setActiveForm(formName);
+    setTimeout(() => {
+      if (activeFormRef.current) {
+        activeFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   useEffect(() => {
@@ -37,11 +49,10 @@ const Dashboard = ({ user, onLogout }) => {
     document.documentElement.classList.toggle('dark', storedDarkMode);
   }, []);
 
-
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-black text-gray-100' : 'bg-white text-black'}`}>
       <div
-        className={`p-6 max-w-4xl mx-auto rounded-xl shadow-lg space-y-6 ${
+        className={`p-6 max-w-5xl mx-auto rounded-xl shadow-lg space-y-6 ${
           darkMode ? 'bg-black' : 'bg-white'
         }`}
       >
@@ -66,7 +77,7 @@ const Dashboard = ({ user, onLogout }) => {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-          <button
+            <button
               onClick={toggleDarkMode}
               className={`p-2 ${darkMode ? 'text-gray-200' : 'text-gray-800'} transition duration-150 ease-in-out`}
             >
@@ -85,18 +96,21 @@ const Dashboard = ({ user, onLogout }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card title="Add Job" icon={<FaBriefcase />} onClick={() => setActiveForm('add Job')} darkMode={darkMode} />
-          <Card title="Add Links" icon={<FaLink />} onClick={() => setActiveForm('add Links')} darkMode={darkMode} />
-          <Card title="Add Books" icon={<FaBook />} onClick={() => setActiveForm('add Books')} darkMode={darkMode} />
-          <Card title="Delete Job" icon={<FaTrash />} onClick={() => setActiveForm('delete Job')} darkMode={darkMode} />
-          <Card title="Delete Links" icon={<FaTrash />} onClick={() => setActiveForm('delete Links')} darkMode={darkMode} />
-          <Card title="Delete Books" icon={<FaTrash />} onClick={() => setActiveForm('delete Books')} darkMode={darkMode} />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
+          <Card title="Add Job" icon={<FaBriefcase />} onClick={() => handleCardClick('add Job')} darkMode={darkMode} />
+          <Card title="Add Links" icon={<FaLink />} onClick={() => handleCardClick('add Links')} darkMode={darkMode} />
+          <Card title="Add Books" icon={<FaBook />} onClick={() => handleCardClick('add Books')} darkMode={darkMode} />
+          <Card title="Add Courses" icon={<FaGraduationCap />} onClick={() => handleCardClick('add Courses')} darkMode={darkMode} />
+          <Card title="Delete Job" icon={<FaTrash />} onClick={() => handleCardClick('delete Job')} darkMode={darkMode} />
+          <Card title="Delete Links" icon={<FaTrash />} onClick={() => handleCardClick('delete Links')} darkMode={darkMode} />
+          <Card title="Delete Books" icon={<FaTrash />} onClick={() => handleCardClick('delete Books')} darkMode={darkMode} />
+          <Card title="Delete Courses" icon={<FaTrash />} onClick={() => handleCardClick('delete Courses')} darkMode={darkMode} />
         </div>
 
         {activeForm && (
           <div
-            className={`max-w-4xl p-4 rounded-xl shadow-lg hover:shadow-xl ${
+            ref={activeFormRef}
+            className={`max-w-5xl p-4 rounded-xl shadow-lg hover:shadow-xl mt-8 ${
               darkMode ? 'bg-gray-900' : 'bg-white border-2 border-gray-500'
             }`}
           >
@@ -111,9 +125,11 @@ const Dashboard = ({ user, onLogout }) => {
               {activeForm === 'add Job' && <JobForm darkMode={darkMode}/>}
               {activeForm === 'add Links' && <LinkForm darkMode={darkMode} />}
               {activeForm === 'add Books' && <BookForm darkMode={darkMode}/>}
+              {activeForm === 'add Courses' && <CourseForm darkMode={darkMode}/>}
               {activeForm === 'delete Job' && <DeleteJob darkMode={darkMode} />}
               {activeForm === 'delete Links' && <DeleteLinks darkMode={darkMode} />}
               {activeForm === 'delete Books' && <DeleteBooks darkMode={darkMode} />}
+              {activeForm === 'delete Courses' && <DeleteCourses darkMode={darkMode} />}
             </div>
           </div>
         )}

@@ -33,9 +33,22 @@ const Books = () => {
     <div className="bg-white dark:bg-black dark:text-white">
       <div className="max-w-3xl mx-auto p-4">
         <div className="border-2 border-black dark:border-gray-600 p-4 bg-white dark:bg-gray-900 shadow-md dark:shadow-lg rounded-sm">
-          <h1 className="text-xl font-bold text-center text-white mb-4 bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-700 dark:to-purple-800 py-2 px-2 shadow-lg">
+        <h1 className="text-xl font-bold text-center text-white mb-4 bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-700 dark:to-purple-800 py-2 px-2 shadow-lg flex items-center justify-center">
+            {/* Left SVG Icon (Book Icon) */}
+            <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-16h-8m0 0H4a2 2 0 00-2 2v12a2 2 0 002 2h8m0-16v16m8-16a2 2 0 012 2v12a2 2 0 01-2 2h-8" />
+            </svg>
+
+            {/* Title */}
             Books
+
+            {/* Right SVG Icon (Open Book Icon) */}
+            <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 4.5a2.5 2.5 0 00-2.5-2.5h-11A2.5 2.5 0 005 4.5v15A2.5 2.5 0 007.5 22h11a2.5 2.5 0 002.5-2.5v-15z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 2.5v19m8-19v19" />
+            </svg>
           </h1>
+
           <div className="flex justify-center mb-8">
             <Image
               src="/book.jpg"
@@ -59,7 +72,7 @@ const Books = () => {
                   </div>
                   <button
                     onClick={() => handleClick(book.link)}
-                    className="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 text-xs underline min-w-[80px] dark:bg-red-500 dark:hover:bg-red-600 text-animation"
+                    className="px-2 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 text-xs underline min-w-[100px] dark:bg-red-500 dark:hover:bg-red-600 text-animation"
                   >
                     Read More
                   </button>

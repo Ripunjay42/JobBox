@@ -54,10 +54,14 @@ const PrivateJobPage = () => {
       <div className="max-w-4xl mx-auto p-4">
         <div className="flex flex-col md:flex-row gap-3">
           <div className="md:w-2/3 border-2 border-black dark:border-gray-600 p-4 bg-white dark:bg-gray-900 shadow-md dark:shadow-lg">
-            <h2 className="text-xl font-bold mb-4 text-center bg-gradient-to-r from-green-600 to-blue-500 text-white py-2 px-4 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
-              <span className="mr-2">🚀</span>
+          <h2 className="text-xl font-bold mb-4 text-center bg-gradient-to-r from-green-600 to-blue-500 text-white py-2 px-4 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out flex items-center justify-center">
+              <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
               Private Jobs
-              <span className="ml-2">💼</span>
+              <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
             </h2>
             {privateJobs.jobs.map((job) => (
               <div key={job.id} className="mb-4">
@@ -76,7 +80,7 @@ const PrivateJobPage = () => {
                 <div className="flex justify-between items-center mt-3">
                   <div>
                     <span className="text-sm text-green-900 font-bold mr-2 dark:text-green-400">Category:</span>
-                    <Link href={`/private_job`} className="text-sm text-blue-800 px-1 py-1 rounded-full hover:underline dark:text-blue-400">
+                    <Link href={`/private`} className="text-sm text-blue-800 px-1 py-1 rounded-full hover:underline dark:text-blue-400">
                       Private
                     </Link>
                   </div>

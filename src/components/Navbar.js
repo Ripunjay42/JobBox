@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { 
   FaUserShield, FaMoon, FaSun, FaTimes, FaChevronDown, FaHome, 
   FaInfoCircle, FaBriefcase, FaBuilding, FaLink, FaBook, FaEnvelope, 
@@ -12,12 +12,15 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(null);
+  const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const mobileDropdownRefs = useRef({});
 
   const navItems = [
     { name: 'Home', href: '/', icon: FaHome },
     { name: 'About', href: '/about', icon: FaInfoCircle },
-    { name: 'Gov.Jobs', href: '/government_job', icon: FaBriefcase },
-    { name: 'Private Jobs', href: '/private_job', icon: FaBuilding },
+    { name: 'Gov.Jobs', href: '/government', icon: FaBriefcase },
+    { name: 'Private Jobs', href: '/private', icon: FaBuilding },
     { name: 'Imp Links', href: '/links', icon: FaLink },
     { name: 'Books', href: '/books', icon: FaBook },
     { name: 'Contact', href: '/contact', icon: FaEnvelope },
@@ -25,7 +28,7 @@ const Navbar = () => {
       name: 'Others',
       icon: FaEllipsisH,
       dropdown: [
-        { name: 'Employer', href: '/employer', icon: FaUser },
+        { name: 'Employer', href: '/', icon: FaUser },
         { name: 'Internship', href: '/internship', icon: FaGraduationCap },
         { name: 'Courses', href: '/courses', icon: FaLaptop },
       ],
@@ -66,6 +69,36 @@ const Navbar = () => {
     setDropdownOpen(dropdownOpen === itemName ? null : itemName);
   };
 
+  const handleClickOutside = (event) => {
+    if (
+      dropdownRef.current && 
+      !dropdownRef.current.contains(event.target) &&
+      mobileMenuRef.current && 
+      !mobileMenuRef.current.contains(event.target)
+    ) {
+      setDropdownOpen(null);
+      setIsOpen(false);
+    }
+
+    // Handle mobile dropdown clicks
+    navItems.forEach((item) => {
+      if (item.dropdown) {
+        const ref = mobileDropdownRefs.current[item.name];
+        if (ref && !ref.contains(event.target)) {
+          setDropdownOpen(null);
+        }
+      }
+    });
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+
   return (
     <>
       {loading ? (
@@ -88,13 +121,13 @@ const Navbar = () => {
                   >
                     {!isOpen ? (
                       <>
-                        <FaBars className="h-4 w-4" />
-                        <span className="ml-2 text-sm">Main Menu</span>
+                        <FaBars className="h-5 w-5" />
+                        <button className="ml-2 text-md" onClick={() => setIsOpen(!isOpen)}>Main Menu</button>
                       </>
                     ) : (
                       <>
-                        <FaTimes className="h-4 w-4" />
-                        <span className="ml-2 text-sm">Main Menu</span>
+                        <FaTimes className="h-5 w-5" />
+                        <span className="ml-2 text-md">Main Menu</span>
                       </>
                     )}
                   </button>
@@ -103,7 +136,11 @@ const Navbar = () => {
                   <div className="hidden md:flex space-x-2">
                     {navItems.map((item) => (
                       item.dropdown ? (
-                        <div key={item.name} className="relative group">
+                        <div 
+                          key={item.name} 
+                          className="relative group"
+                          ref={dropdownRef}
+                        >
                           <button
                             onClick={() => handleDropdownToggle(item.name)}
                             className="group relative text-white dark:text-gray-300 px-2 py-1 rounded-md text-xs font-bold flex items-center"
@@ -121,9 +158,9 @@ const Navbar = () => {
                                     href={dropdownItem.href}
                                     className="px-4 py-2 text-xs font-bold text-black dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-black flex items-center"
                                     role="menuitem"
+                                    onClick={() => setDropdownOpen(null)}
                                   >
                                     <dropdownItem.icon className="mr-2 h-3 w-3" />
-                                    {/* <span className="absolute inset-0 rounded-md border border-transparent group-hover:border-black transition-all duration-200"></span> */}
                                     {dropdownItem.name}
                                   </Link>
                                 ))}
@@ -147,7 +184,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <button onClick={toggleDarkMode} className="text-white dark:text-red-600">
-                    {darkMode ? <FaSun className="h-5 w-5" /> : <FaMoon className="h-5 w-5" />}
+                    {darkMode ? <FaSun className="h-5 w-5" /> : <FaMoon className="h-4 w-5" />}
                   </button>
                   <Link href="/login">
                     <button className="bg-white dark:bg-gray-700 text-red-600 dark:text-yellow-400 font-bold px-3 py-1 rounded-full text-xs flex items-center">
@@ -158,6 +195,7 @@ const Navbar = () => {
               </div>
             </div>
             <div
+              ref={mobileMenuRef}
               className={`md:hidden fixed top-45 left-0 w-64 h-full bg-gray-900 dark:bg-black shadow-lg transform ${
                 isOpen ? 'translate-x-0' : '-translate-x-full'
               } transition-transform duration-300 ease-in-out z-50`}
@@ -193,7 +231,10 @@ const Navbar = () => {
                               key={dropdownItem.name}
                               href={dropdownItem.href}
                               className="text-white dark:text-gray-300 px-3 py-2 rounded-md text-xs font-bold border-b border-white dark:border-gray-700 w-full mb-3 text-left flex items-center"
-                              onClick={() => setIsOpen(false)}
+                              onClick={() => {
+                                setIsOpen(false);
+                                setDropdownOpen(null);
+                              }}
                             >
                               <dropdownItem.icon className="mr-2 h-3 w-3" />
                               {dropdownItem.name}
@@ -219,7 +260,7 @@ const Navbar = () => {
                     onClick={toggleDarkMode}
                     className="text-white dark:text-red-600 p-2 rounded-md"
                   >
-                    {darkMode ? <FaSun className="h-5 w-5" /> : <FaMoon className="h-5 w-5" />}
+                    {darkMode ? <FaSun className="h-5 w-5" /> : <FaMoon className="h-4 w-5" />}
                   </button>
                   <Link href="/login">
                     <button

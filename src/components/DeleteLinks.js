@@ -107,14 +107,14 @@ const DeleteLinks = ({ darkMode }) => {
         <button 
           onClick={() => paginate(currentPage - 1)} 
           disabled={currentPage === 1}
-          className={`px-3 py-1 text-sm font-bold rounded underline ${currentPage === 1 ? 'bg-gray-300 dark:bg-gray-700 text-white cursor-not-allowed' : 'bg-indigo-500 text-white hover:bg-indigo-600 dark:bg-indigo-700 dark:hover:bg-indigo-800'}`}
+          className={`px-3 py-1 text-sm font-bold rounded underline ${currentPage === 1 ? 'bg-gray-400 dark:bg-gray-400 text-black cursor-not-allowed' : 'bg-indigo-500 text-white hover:bg-indigo-600 dark:bg-indigo-700 dark:hover:bg-indigo-800'}`}
         >
           Prev page
         </button>
         <button 
           onClick={() => paginate(currentPage + 1)} 
           disabled={currentPage * linksPerPage >= totalLinks}
-          className={`px-3 py-1 text-sm font-bold rounded underline ${currentPage * linksPerPage >= totalLinks ? 'bg-gray-300 dark:bg-gray-700 text-white cursor-not-allowed' : 'bg-indigo-500 text-white hover:bg-indigo-600 dark:bg-indigo-700 dark:hover:bg-indigo-800'}`}
+          className={`px-3 py-1 text-sm font-bold rounded underline ${currentPage * linksPerPage >= totalLinks ? 'bg-gray-400 dark:bg-gray-400 text-black cursor-not-allowed' : 'bg-indigo-500 text-white hover:bg-indigo-600 dark:bg-indigo-700 dark:hover:bg-indigo-800'}`}
         > 
           Next page
         </button>

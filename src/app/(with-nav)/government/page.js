@@ -60,10 +60,14 @@ const GovJobPage = () => {
       <div className="max-w-4xl mx-auto p-4">
         <div className="flex flex-col md:flex-row gap-3">
           <div className="md:w-2/3 border-2 border-black dark:border-gray-600 p-4 bg-white dark:bg-gray-900 shadow-md dark:shadow-lg">
-            <h2 className="text-xl font-bold mb-4 text-center bg-gradient-to-r from-green-600 to-blue-500 text-white py-2 px-4 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
-              <span className="mr-2">🚀</span>
+          <h2 className="text-xl font-bold mb-4 text-center bg-gradient-to-r from-green-600 to-blue-500 text-white py-2 px-4 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out flex items-center justify-center">
+              <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
               Government Jobs
-              <span className="ml-2">🏛️</span>
+              <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+              </svg>
             </h2>
             {govJobs.jobs.map((job) => (
               <div key={job.id} className="mb-4">
@@ -82,7 +86,7 @@ const GovJobPage = () => {
                 <div className="flex justify-between items-center mt-3">
                   <div>
                     <span className="text-sm text-green-900 font-bold mr-2 dark:text-green-400">Category:</span>
-                    <Link href={`/gov_job`} className="text-sm text-blue-800 px-1 py-1 rounded-full hover:underline dark:text-blue-400">
+                    <Link href={`/government`} className="text-sm text-blue-800 px-1 py-1 rounded-full hover:underline dark:text-blue-400">
                       Government
                     </Link>
                   </div>

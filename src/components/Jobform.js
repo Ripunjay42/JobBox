@@ -72,6 +72,7 @@ const JobForm = ({ darkMode }) => {
           <option value="">Select Job Category</option>
           <option value="private">Private Job</option>
           <option value="government">Government Job</option>
+          <option value="internship">Internship</option>
         </select>
         <textarea
           name="job_description"
