@@ -127,7 +127,7 @@ const Navbar = () => {
                     ) : (
                       <>
                         <FaTimes className="h-5 w-5" />
-                        <span className="ml-2 text-md">Main Menu</span>
+                        <span className="ml-2 text-sm">Main Menu</span>
                       </>
                     )}
                   </button>
