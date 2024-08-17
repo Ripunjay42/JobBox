@@ -122,7 +122,7 @@ const Navbar = () => {
                     {!isOpen ? (
                       <>
                         <FaBars className="h-5 w-5" />
-                        <button className="ml-2 text-md" onClick={() => setIsOpen(!isOpen)}>Main Menu</button>
+                        <button className="ml-2 text-sm" onClick={() => setIsOpen(!isOpen)}>Main Menu</button>
                       </>
                     ) : (
                       <>
