@@ -29,8 +29,11 @@ export const JobProvider = ({ children }) => {
     const fetchPaginatedData = async () => {
       setLoading(true);
       try {
+
+        const jobsResponse = await axios.get('https://jobbox-server-roan.vercel.app/api/jobs', { params: { page: currentJobPage, limit: jobsPerPage } });
+        setJobs(jobsResponse.data);
+
         const [
-          jobsResponse,
           govResponse,
           privateResponse,
           internResponse, // Fetching internship data
@@ -38,7 +41,6 @@ export const JobProvider = ({ children }) => {
           bookResponse,
           courseResponse // Fetching courses data
         ] = await Promise.all([
-          axios.get('https://jobbox-server-roan.vercel.app/api/jobs', { params: { page: currentJobPage, limit: jobsPerPage } }),
           axios.get('https://jobbox-server-roan.vercel.app/api/gov', { params: { page: currentGovPage, limit: jobsPerPage } }),
           axios.get('https://jobbox-server-roan.vercel.app/api/private', { params: { page: currentPrivatePage, limit: jobsPerPage } }),
           axios.get('https://jobbox-server-roan.vercel.app/api/internships', { params: { page: currentInternPage, limit: jobsPerPage } }), // API call for internships
@@ -46,8 +48,6 @@ export const JobProvider = ({ children }) => {
           axios.get('https://jobbox-server-roan.vercel.app/api/books', { params: { page: currentBooksPage, limit: booksPerPage } }),
           axios.get('https://jobbox-server-roan.vercel.app/api/courses', { params: { page: currentCoursesPage, limit: coursesPerPage } }) // API call for courses
         ]);
-
-        setJobs(jobsResponse.data);
         setGovJobs(govResponse.data);
         setPrivateJobs(privateResponse.data);
         setInternJobs(internResponse.data); // Setting internship data
