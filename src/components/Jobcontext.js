@@ -20,7 +20,7 @@ export const JobProvider = ({ children }) => {
   const [currentBooksPage, setCurrentBooksPage] = useState(1);
   const [currentCoursesPage, setCurrentCoursesPage] = useState(1); // New state for current courses page
   const [loading, setLoading] = useState(false);
-  const jobsPerPage = 5;
+  const jobsPerPage = 8;
   const linksPerPage = 6;
   const booksPerPage = 5;
   const coursesPerPage = 6; // Define coursesPerPage
