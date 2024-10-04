@@ -31,7 +31,7 @@ export const JobProvider = ({ children }) => {
       try {
         const jobsResponse = await axios.get('https://jobbox-server-roan.vercel.app/api/jobs', { params: { page: currentJobPage, limit: jobsPerPage } });
         setJobs(jobsResponse.data);
-        
+        setLoading(false);
         setTimeout(() => {
           Promise.all([
             axios.get('https://jobbox-server-roan.vercel.app/api/gov', { params: { page: currentGovPage, limit: jobsPerPage } }),
