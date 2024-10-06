@@ -49,10 +49,7 @@ const GovJobPage = () => {
 
   if (loading) return <Loadingspin/>
   // <div className='text-center dark:text-white'>Loading...</div>;
-  if (!govJobs.jobs || govJobs.jobs.length === 0)
-  {
-    paginate(currentGovPage - 1)
-  }
+  if (!govJobs.jobs || govJobs.jobs.length === 0)  return <div className='text-center dark:text-white'>No Government jobs available</div>;
     //  return <div className='text-center dark:text-white'>No government jobs available</div>;
 
   return (
