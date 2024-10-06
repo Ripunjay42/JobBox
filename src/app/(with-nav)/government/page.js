@@ -43,7 +43,7 @@ const GovJobPage = () => {
   };
 
 
-  const prevButtonDisabled = currentGovPage === 1;
+  const prevButtonDisabled = currentGovPage === 1 || loading;
   // const nextButtonDisabled = loading || (currentGovPage * jobsPerPage > govJobs.jobs.totalJobs);
   const nextButtonDisabled = !govJobs.jobs || govJobs.jobs.length < jobsPerPage || loading || currentGovPage * jobsPerPage >= govJobs.totalJobs;
 
